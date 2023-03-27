@@ -2,8 +2,8 @@
 
 import assert from "assert";
 
-import { ethers } from "ethers";
-import { loadTests, TestCase } from "@ethersproject/testcases";
+import { ethers } from "boa-ethers";
+import { loadTests, TestCase } from "boaproject-testcases";
 
 import * as utils from "./utils";
 

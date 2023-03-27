@@ -1,20 +1,20 @@
 "use strict";
 
-import { getAddress } from "@ethersproject/address";
-import { Provider, TransactionRequest } from "@ethersproject/abstract-provider";
-import { ExternallyOwnedAccount, Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from "@ethersproject/abstract-signer";
-import { arrayify, Bytes, BytesLike, concat, hexDataSlice, isHexString, joinSignature, SignatureLike } from "@ethersproject/bytes";
-import { hashMessage, _TypedDataEncoder } from "@ethersproject/hash";
-import { defaultPath, HDNode, entropyToMnemonic, Mnemonic } from "@ethersproject/hdnode";
-import { keccak256 } from "@ethersproject/keccak256";
-import { defineReadOnly, resolveProperties } from "@ethersproject/properties";
-import { randomBytes } from "@ethersproject/random";
-import { SigningKey } from "@ethersproject/signing-key";
-import { decryptJsonWallet, decryptJsonWalletSync, encryptKeystore, ProgressCallback } from "@ethersproject/json-wallets";
-import { computeAddress, recoverAddress, serialize, UnsignedTransaction } from "@ethersproject/transactions";
-import { Wordlist } from "@ethersproject/wordlists";
+import { getAddress } from "boaproject-address";
+import { Provider, TransactionRequest } from "boaproject-abstract-provider";
+import { ExternallyOwnedAccount, Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from "boaproject-abstract-signer";
+import { arrayify, Bytes, BytesLike, concat, hexDataSlice, isHexString, joinSignature, SignatureLike } from "boaproject-bytes";
+import { hashMessage, _TypedDataEncoder } from "boaproject-hash";
+import { defaultPath, HDNode, entropyToMnemonic, Mnemonic } from "boaproject-hdnode";
+import { keccak256 } from "boaproject-keccak256";
+import { defineReadOnly, resolveProperties } from "boaproject-properties";
+import { randomBytes } from "boaproject-random";
+import { SigningKey } from "boaproject-signing-key";
+import { decryptJsonWallet, decryptJsonWalletSync, encryptKeystore, ProgressCallback } from "boaproject-json-wallets";
+import { computeAddress, recoverAddress, serialize, UnsignedTransaction } from "boaproject-transactions";
+import { Wordlist } from "boaproject-wordlists";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "boaproject-logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 

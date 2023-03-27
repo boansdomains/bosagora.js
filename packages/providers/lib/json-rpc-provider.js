@@ -52,17 +52,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.JsonRpcProvider = exports.JsonRpcSigner = void 0;
-var abstract_signer_1 = require("@ethersproject/abstract-signer");
-var bignumber_1 = require("@ethersproject/bignumber");
-var bytes_1 = require("@ethersproject/bytes");
-var hash_1 = require("@ethersproject/hash");
-var properties_1 = require("@ethersproject/properties");
-var strings_1 = require("@ethersproject/strings");
-var transactions_1 = require("@ethersproject/transactions");
-var web_1 = require("@ethersproject/web");
-var logger_1 = require("@ethersproject/logger");
+var boaproject_abstract_signer_1 = require("boaproject-abstract-signer");
+var boaproject_bignumber_1 = require("boaproject-bignumber");
+var boaproject_bytes_1 = require("boaproject-bytes");
+var boaproject_hash_1 = require("boaproject-hash");
+var boaproject_properties_1 = require("boaproject-properties");
+var boaproject_strings_1 = require("boaproject-strings");
+var boaproject_transactions_1 = require("boaproject-transactions");
+var boaproject_web_1 = require("boaproject-web");
+var boaproject_logger_1 = require("boaproject-logger");
 var _version_1 = require("./_version");
-var logger = new logger_1.Logger(_version_1.version);
+var logger = new boaproject_logger_1.Logger(_version_1.version);
 var base_provider_1 = require("./base-provider");
 var errorGas = ["call", "estimateGas"];
 function spelunk(value, requireData) {
@@ -71,7 +71,7 @@ function spelunk(value, requireData) {
     }
     // These *are* the droids we're looking for.
     if (typeof (value.message) === "string" && value.message.match("reverted")) {
-        var data = (0, bytes_1.isHexString)(value.data) ? value.data : null;
+        var data = (0, boaproject_bytes_1.isHexString)(value.data) ? value.data : null;
         if (!requireData || data) {
             return { message: value.message, data: data };
         }
@@ -105,7 +105,7 @@ function checkError(method, error, params) {
             return result.data;
         }
         // Nothing descriptive..
-        logger.throwError("missing revert data in call exception; Transaction reverted without a reason string", logger_1.Logger.errors.CALL_EXCEPTION, {
+        logger.throwError("missing revert data in call exception; Transaction reverted without a reason string", boaproject_logger_1.Logger.errors.CALL_EXCEPTION, {
             data: "0x",
             transaction: transaction,
             error: error
@@ -119,7 +119,7 @@ function checkError(method, error, params) {
         }
         // Found "reverted", this is a CALL_EXCEPTION
         if (result) {
-            logger.throwError("cannot estimate gas; transaction may fail or may require manual gas limit", logger_1.Logger.errors.UNPREDICTABLE_GAS_LIMIT, {
+            logger.throwError("cannot estimate gas; transaction may fail or may require manual gas limit", boaproject_logger_1.Logger.errors.UNPREDICTABLE_GAS_LIMIT, {
                 reason: result.message,
                 method: method,
                 transaction: transaction,
@@ -129,7 +129,7 @@ function checkError(method, error, params) {
     }
     // @TODO: Should we spelunk for message too?
     var message = error.message;
-    if (error.code === logger_1.Logger.errors.SERVER_ERROR && error.error && typeof (error.error.message) === "string") {
+    if (error.code === boaproject_logger_1.Logger.errors.SERVER_ERROR && error.error && typeof (error.error.message) === "string") {
         message = error.error.message;
     }
     else if (typeof (error.body) === "string") {
@@ -141,7 +141,7 @@ function checkError(method, error, params) {
     message = (message || "").toLowerCase();
     // "insufficient funds for gas * price + value + cost(data)"
     if (message.match(/insufficient funds|base fee exceeds gas limit/i)) {
-        logger.throwError("insufficient funds for intrinsic transaction cost", logger_1.Logger.errors.INSUFFICIENT_FUNDS, {
+        logger.throwError("insufficient funds for intrinsic transaction cost", boaproject_logger_1.Logger.errors.INSUFFICIENT_FUNDS, {
             error: error,
             method: method,
             transaction: transaction
@@ -149,7 +149,7 @@ function checkError(method, error, params) {
     }
     // "nonce too low"
     if (message.match(/nonce (is )?too low/i)) {
-        logger.throwError("nonce has already been used", logger_1.Logger.errors.NONCE_EXPIRED, {
+        logger.throwError("nonce has already been used", boaproject_logger_1.Logger.errors.NONCE_EXPIRED, {
             error: error,
             method: method,
             transaction: transaction
@@ -157,7 +157,7 @@ function checkError(method, error, params) {
     }
     // "replacement transaction underpriced"
     if (message.match(/replacement transaction underpriced|transaction gas price.*too low/i)) {
-        logger.throwError("replacement fee too low", logger_1.Logger.errors.REPLACEMENT_UNDERPRICED, {
+        logger.throwError("replacement fee too low", boaproject_logger_1.Logger.errors.REPLACEMENT_UNDERPRICED, {
             error: error,
             method: method,
             transaction: transaction
@@ -165,14 +165,14 @@ function checkError(method, error, params) {
     }
     // "replacement transaction underpriced"
     if (message.match(/only replay-protected/i)) {
-        logger.throwError("legacy pre-eip-155 transactions not supported", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+        logger.throwError("legacy pre-eip-155 transactions not supported", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
             error: error,
             method: method,
             transaction: transaction
         });
     }
     if (errorGas.indexOf(method) >= 0 && message.match(/gas required exceeds allowance|always failing transaction|execution reverted/)) {
-        logger.throwError("cannot estimate gas; transaction may fail or may require manual gas limit", logger_1.Logger.errors.UNPREDICTABLE_GAS_LIMIT, {
+        logger.throwError("cannot estimate gas; transaction may fail or may require manual gas limit", boaproject_logger_1.Logger.errors.UNPREDICTABLE_GAS_LIMIT, {
             error: error,
             method: method,
             transaction: transaction
@@ -209,17 +209,17 @@ var JsonRpcSigner = /** @class */ (function (_super) {
         if (constructorGuard !== _constructorGuard) {
             throw new Error("do not call the JsonRpcSigner constructor directly; use provider.getSigner");
         }
-        (0, properties_1.defineReadOnly)(_this, "provider", provider);
+        (0, boaproject_properties_1.defineReadOnly)(_this, "provider", provider);
         if (addressOrIndex == null) {
             addressOrIndex = 0;
         }
         if (typeof (addressOrIndex) === "string") {
-            (0, properties_1.defineReadOnly)(_this, "_address", _this.provider.formatter.address(addressOrIndex));
-            (0, properties_1.defineReadOnly)(_this, "_index", null);
+            (0, boaproject_properties_1.defineReadOnly)(_this, "_address", _this.provider.formatter.address(addressOrIndex));
+            (0, boaproject_properties_1.defineReadOnly)(_this, "_index", null);
         }
         else if (typeof (addressOrIndex) === "number") {
-            (0, properties_1.defineReadOnly)(_this, "_index", addressOrIndex);
-            (0, properties_1.defineReadOnly)(_this, "_address", null);
+            (0, boaproject_properties_1.defineReadOnly)(_this, "_index", addressOrIndex);
+            (0, boaproject_properties_1.defineReadOnly)(_this, "_address", null);
         }
         else {
             logger.throwArgumentError("invalid address or index", "addressOrIndex", addressOrIndex);
@@ -227,7 +227,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
         return _this;
     }
     JsonRpcSigner.prototype.connect = function (provider) {
-        return logger.throwError("cannot alter JSON-RPC Signer connection", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+        return logger.throwError("cannot alter JSON-RPC Signer connection", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
             operation: "connect"
         });
     };
@@ -241,7 +241,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
         }
         return this.provider.send("eth_accounts", []).then(function (accounts) {
             if (accounts.length <= _this._index) {
-                logger.throwError("unknown account #" + _this._index, logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+                logger.throwError("unknown account #" + _this._index, boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                     operation: "getAddress"
                 });
             }
@@ -250,7 +250,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
     };
     JsonRpcSigner.prototype.sendUncheckedTransaction = function (transaction) {
         var _this = this;
-        transaction = (0, properties_1.shallowCopy)(transaction);
+        transaction = (0, boaproject_properties_1.shallowCopy)(transaction);
         var fromAddress = this.getAddress().then(function (address) {
             if (address) {
                 address = address.toLowerCase();
@@ -261,7 +261,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
         // wishes to use this, it is easy to specify explicitly, otherwise
         // we look it up for them.
         if (transaction.gasLimit == null) {
-            var estimate = (0, properties_1.shallowCopy)(transaction);
+            var estimate = (0, boaproject_properties_1.shallowCopy)(transaction);
             estimate.from = fromAddress;
             transaction.gasLimit = this.provider.estimateGas(estimate);
         }
@@ -285,8 +285,8 @@ var JsonRpcSigner = /** @class */ (function (_super) {
                 });
             }); });
         }
-        return (0, properties_1.resolveProperties)({
-            tx: (0, properties_1.resolveProperties)(transaction),
+        return (0, boaproject_properties_1.resolveProperties)({
+            tx: (0, boaproject_properties_1.resolveProperties)(transaction),
             sender: fromAddress
         }).then(function (_a) {
             var tx = _a.tx, sender = _a.sender;
@@ -303,7 +303,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
                 return hash;
             }, function (error) {
                 if (typeof (error.message) === "string" && error.message.match(/user denied/i)) {
-                    logger.throwError("user rejected transaction", logger_1.Logger.errors.ACTION_REJECTED, {
+                    logger.throwError("user rejected transaction", boaproject_logger_1.Logger.errors.ACTION_REJECTED, {
                         action: "sendTransaction",
                         transaction: tx
                     });
@@ -313,7 +313,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
         });
     };
     JsonRpcSigner.prototype.signTransaction = function (transaction) {
-        return logger.throwError("signing transactions is unsupported", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+        return logger.throwError("signing transactions is unsupported", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
             operation: "signTransaction"
         });
     };
@@ -332,7 +332,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
                         _a.label = 3;
                     case 3:
                         _a.trys.push([3, 5, , 6]);
-                        return [4 /*yield*/, (0, web_1.poll)(function () { return __awaiter(_this, void 0, void 0, function () {
+                        return [4 /*yield*/, (0, boaproject_web_1.poll)(function () { return __awaiter(_this, void 0, void 0, function () {
                                 var tx;
                                 return __generator(this, function (_a) {
                                     switch (_a.label) {
@@ -366,19 +366,19 @@ var JsonRpcSigner = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        data = ((typeof (message) === "string") ? (0, strings_1.toUtf8Bytes)(message) : message);
+                        data = ((typeof (message) === "string") ? (0, boaproject_strings_1.toUtf8Bytes)(message) : message);
                         return [4 /*yield*/, this.getAddress()];
                     case 1:
                         address = _a.sent();
                         _a.label = 2;
                     case 2:
                         _a.trys.push([2, 4, , 5]);
-                        return [4 /*yield*/, this.provider.send("personal_sign", [(0, bytes_1.hexlify)(data), address.toLowerCase()])];
+                        return [4 /*yield*/, this.provider.send("personal_sign", [(0, boaproject_bytes_1.hexlify)(data), address.toLowerCase()])];
                     case 3: return [2 /*return*/, _a.sent()];
                     case 4:
                         error_2 = _a.sent();
                         if (typeof (error_2.message) === "string" && error_2.message.match(/user denied/i)) {
-                            logger.throwError("user rejected signing", logger_1.Logger.errors.ACTION_REJECTED, {
+                            logger.throwError("user rejected signing", boaproject_logger_1.Logger.errors.ACTION_REJECTED, {
                                 action: "signMessage",
                                 from: address,
                                 message: data
@@ -396,21 +396,21 @@ var JsonRpcSigner = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        data = ((typeof (message) === "string") ? (0, strings_1.toUtf8Bytes)(message) : message);
+                        data = ((typeof (message) === "string") ? (0, boaproject_strings_1.toUtf8Bytes)(message) : message);
                         return [4 /*yield*/, this.getAddress()];
                     case 1:
                         address = _a.sent();
                         _a.label = 2;
                     case 2:
                         _a.trys.push([2, 4, , 5]);
-                        return [4 /*yield*/, this.provider.send("eth_sign", [address.toLowerCase(), (0, bytes_1.hexlify)(data)])];
+                        return [4 /*yield*/, this.provider.send("eth_sign", [address.toLowerCase(), (0, boaproject_bytes_1.hexlify)(data)])];
                     case 3: 
                     // https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_sign
                     return [2 /*return*/, _a.sent()];
                     case 4:
                         error_3 = _a.sent();
                         if (typeof (error_3.message) === "string" && error_3.message.match(/user denied/i)) {
-                            logger.throwError("user rejected signing", logger_1.Logger.errors.ACTION_REJECTED, {
+                            logger.throwError("user rejected signing", boaproject_logger_1.Logger.errors.ACTION_REJECTED, {
                                 action: "_legacySignMessage",
                                 from: address,
                                 message: data
@@ -428,7 +428,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, hash_1._TypedDataEncoder.resolveNames(domain, types, value, function (name) {
+                    case 0: return [4 /*yield*/, boaproject_hash_1._TypedDataEncoder.resolveNames(domain, types, value, function (name) {
                             return _this.provider.resolveName(name);
                         })];
                     case 1:
@@ -441,13 +441,13 @@ var JsonRpcSigner = /** @class */ (function (_super) {
                         _a.trys.push([3, 5, , 6]);
                         return [4 /*yield*/, this.provider.send("eth_signTypedData_v4", [
                                 address.toLowerCase(),
-                                JSON.stringify(hash_1._TypedDataEncoder.getPayload(populated.domain, types, populated.value))
+                                JSON.stringify(boaproject_hash_1._TypedDataEncoder.getPayload(populated.domain, types, populated.value))
                             ])];
                     case 4: return [2 /*return*/, _a.sent()];
                     case 5:
                         error_4 = _a.sent();
                         if (typeof (error_4.message) === "string" && error_4.message.match(/user denied/i)) {
-                            logger.throwError("user rejected signing", logger_1.Logger.errors.ACTION_REJECTED, {
+                            logger.throwError("user rejected signing", boaproject_logger_1.Logger.errors.ACTION_REJECTED, {
                                 action: "_signTypedData",
                                 from: address,
                                 message: { domain: populated.domain, types: types, value: populated.value }
@@ -475,7 +475,7 @@ var JsonRpcSigner = /** @class */ (function (_super) {
         });
     };
     return JsonRpcSigner;
-}(abstract_signer_1.Signer));
+}(boaproject_abstract_signer_1.Signer));
 exports.JsonRpcSigner = JsonRpcSigner;
 var UncheckedJsonRpcSigner = /** @class */ (function (_super) {
     __extends(UncheckedJsonRpcSigner, _super);
@@ -526,15 +526,15 @@ var JsonRpcProvider = /** @class */ (function (_super) {
         _this = _super.call(this, networkOrReady) || this;
         // Default URL
         if (!url) {
-            url = (0, properties_1.getStatic)(_this.constructor, "defaultUrl")();
+            url = (0, boaproject_properties_1.getStatic)(_this.constructor, "defaultUrl")();
         }
         if (typeof (url) === "string") {
-            (0, properties_1.defineReadOnly)(_this, "connection", Object.freeze({
+            (0, boaproject_properties_1.defineReadOnly)(_this, "connection", Object.freeze({
                 url: url
             }));
         }
         else {
-            (0, properties_1.defineReadOnly)(_this, "connection", Object.freeze((0, properties_1.shallowCopy)(url)));
+            (0, boaproject_properties_1.defineReadOnly)(_this, "connection", Object.freeze((0, boaproject_properties_1.shallowCopy)(url)));
         }
         _this._nextId = 42;
         return _this;
@@ -594,19 +594,19 @@ var JsonRpcProvider = /** @class */ (function (_super) {
                     case 8: return [3 /*break*/, 9];
                     case 9:
                         if (chainId != null) {
-                            getNetwork = (0, properties_1.getStatic)(this.constructor, "getNetwork");
+                            getNetwork = (0, boaproject_properties_1.getStatic)(this.constructor, "getNetwork");
                             try {
-                                return [2 /*return*/, getNetwork(bignumber_1.BigNumber.from(chainId).toNumber())];
+                                return [2 /*return*/, getNetwork(boaproject_bignumber_1.BigNumber.from(chainId).toNumber())];
                             }
                             catch (error) {
-                                return [2 /*return*/, logger.throwError("could not detect network", logger_1.Logger.errors.NETWORK_ERROR, {
+                                return [2 /*return*/, logger.throwError("could not detect network", boaproject_logger_1.Logger.errors.NETWORK_ERROR, {
                                         chainId: chainId,
                                         event: "invalidNetwork",
                                         serverError: error
                                     })];
                             }
                         }
-                        return [2 /*return*/, logger.throwError("could not detect network", logger_1.Logger.errors.NETWORK_ERROR, {
+                        return [2 /*return*/, logger.throwError("could not detect network", boaproject_logger_1.Logger.errors.NETWORK_ERROR, {
                                 event: "noNetwork"
                             })];
                 }
@@ -635,7 +635,7 @@ var JsonRpcProvider = /** @class */ (function (_super) {
         };
         this.emit("debug", {
             action: "request",
-            request: (0, properties_1.deepCopy)(request),
+            request: (0, boaproject_properties_1.deepCopy)(request),
             provider: this
         });
         // We can expand this in the future to any call, but for now these
@@ -644,7 +644,7 @@ var JsonRpcProvider = /** @class */ (function (_super) {
         if (cache && this._cache[method]) {
             return this._cache[method];
         }
-        var result = (0, web_1.fetchJson)(this.connection, JSON.stringify(request), getResult).then(function (result) {
+        var result = (0, boaproject_web_1.fetchJson)(this.connection, JSON.stringify(request), getResult).then(function (result) {
             _this.emit("debug", {
                 action: "response",
                 request: request,
@@ -683,7 +683,7 @@ var JsonRpcProvider = /** @class */ (function (_super) {
             case "getCode":
                 return ["eth_getCode", [getLowerCase(params.address), params.blockTag]];
             case "getStorageAt":
-                return ["eth_getStorageAt", [getLowerCase(params.address), (0, bytes_1.hexZeroPad)(params.position, 32), params.blockTag]];
+                return ["eth_getStorageAt", [getLowerCase(params.address), (0, boaproject_bytes_1.hexZeroPad)(params.position, 32), params.blockTag]];
             case "sendTransaction":
                 return ["eth_sendRawTransaction", [params.signedTransaction]];
             case "getBlock":
@@ -699,11 +699,11 @@ var JsonRpcProvider = /** @class */ (function (_super) {
             case "getTransactionReceipt":
                 return ["eth_getTransactionReceipt", [params.transactionHash]];
             case "call": {
-                var hexlifyTransaction = (0, properties_1.getStatic)(this.constructor, "hexlifyTransaction");
+                var hexlifyTransaction = (0, boaproject_properties_1.getStatic)(this.constructor, "hexlifyTransaction");
                 return ["eth_call", [hexlifyTransaction(params.transaction, { from: true }), params.blockTag]];
             }
             case "estimateGas": {
-                var hexlifyTransaction = (0, properties_1.getStatic)(this.constructor, "hexlifyTransaction");
+                var hexlifyTransaction = (0, boaproject_properties_1.getStatic)(this.constructor, "hexlifyTransaction");
                 return ["eth_estimateGas", [hexlifyTransaction(params.transaction, { from: true })]];
             }
             case "getLogs":
@@ -724,22 +724,22 @@ var JsonRpcProvider = /** @class */ (function (_super) {
                     case 0:
                         if (!(method === "call" || method === "estimateGas")) return [3 /*break*/, 2];
                         tx = params.transaction;
-                        if (!(tx && tx.type != null && bignumber_1.BigNumber.from(tx.type).isZero())) return [3 /*break*/, 2];
+                        if (!(tx && tx.type != null && boaproject_bignumber_1.BigNumber.from(tx.type).isZero())) return [3 /*break*/, 2];
                         if (!(tx.maxFeePerGas == null && tx.maxPriorityFeePerGas == null)) return [3 /*break*/, 2];
                         return [4 /*yield*/, this.getFeeData()];
                     case 1:
                         feeData = _a.sent();
                         if (feeData.maxFeePerGas == null && feeData.maxPriorityFeePerGas == null) {
                             // Network doesn't know about EIP-1559 (and hence type)
-                            params = (0, properties_1.shallowCopy)(params);
-                            params.transaction = (0, properties_1.shallowCopy)(tx);
+                            params = (0, boaproject_properties_1.shallowCopy)(params);
+                            params.transaction = (0, boaproject_properties_1.shallowCopy)(tx);
                             delete params.transaction.type;
                         }
                         _a.label = 2;
                     case 2:
                         args = this.prepareRequest(method, params);
                         if (args == null) {
-                            logger.throwError(method + " not implemented", logger_1.Logger.errors.NOT_IMPLEMENTED, { operation: method });
+                            logger.throwError(method + " not implemented", boaproject_logger_1.Logger.errors.NOT_IMPLEMENTED, { operation: method });
                         }
                         _a.label = 3;
                     case 3:
@@ -817,7 +817,7 @@ var JsonRpcProvider = /** @class */ (function (_super) {
     //        will be the preferred method for this.
     JsonRpcProvider.hexlifyTransaction = function (transaction, allowExtra) {
         // Check only allowed properties are given
-        var allowed = (0, properties_1.shallowCopy)(allowedTransactionKeys);
+        var allowed = (0, boaproject_properties_1.shallowCopy)(allowedTransactionKeys);
         if (allowExtra) {
             for (var key in allowExtra) {
                 if (allowExtra[key]) {
@@ -825,14 +825,14 @@ var JsonRpcProvider = /** @class */ (function (_super) {
                 }
             }
         }
-        (0, properties_1.checkProperties)(transaction, allowed);
+        (0, boaproject_properties_1.checkProperties)(transaction, allowed);
         var result = {};
         // JSON-RPC now requires numeric values to be "quantity" values
         ["chainId", "gasLimit", "gasPrice", "type", "maxFeePerGas", "maxPriorityFeePerGas", "nonce", "value"].forEach(function (key) {
             if (transaction[key] == null) {
                 return;
             }
-            var value = (0, bytes_1.hexValue)(bignumber_1.BigNumber.from(transaction[key]));
+            var value = (0, boaproject_bytes_1.hexValue)(boaproject_bignumber_1.BigNumber.from(transaction[key]));
             if (key === "gasLimit") {
                 key = "gas";
             }
@@ -842,10 +842,10 @@ var JsonRpcProvider = /** @class */ (function (_super) {
             if (transaction[key] == null) {
                 return;
             }
-            result[key] = (0, bytes_1.hexlify)(transaction[key]);
+            result[key] = (0, boaproject_bytes_1.hexlify)(transaction[key]);
         });
         if (transaction.accessList) {
-            result["accessList"] = (0, transactions_1.accessListify)(transaction.accessList);
+            result["accessList"] = (0, boaproject_transactions_1.accessListify)(transaction.accessList);
         }
         return result;
     };

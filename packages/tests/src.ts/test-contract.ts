@@ -2,7 +2,7 @@
 
 import assert from "assert";
 
-import { ethers } from "ethers";
+import { ethers } from "boa-ethers";
 
 import contractData from "./test-contract.json";
 

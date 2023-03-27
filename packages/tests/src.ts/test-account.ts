@@ -2,8 +2,8 @@
 
 import assert from 'assert';
 
-import { ethers } from "ethers";
-import { loadTests } from "@ethersproject/testcases";
+import { ethers } from "boa-ethers";
+import { loadTests } from "boaproject-testcases";
 
 
 type TestCase = {

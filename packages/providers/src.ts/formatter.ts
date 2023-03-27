@@ -1,14 +1,14 @@
 "use strict";
 
-import { Block, TransactionReceipt, TransactionResponse } from "@ethersproject/abstract-provider";
-import { getAddress, getContractAddress } from "@ethersproject/address";
-import { BigNumber } from "@ethersproject/bignumber";
-import { hexDataLength, hexDataSlice, hexValue, hexZeroPad, isHexString } from "@ethersproject/bytes";
-import { AddressZero } from "@ethersproject/constants";
-import { shallowCopy } from "@ethersproject/properties";
-import { AccessList, accessListify, parse as parseTransaction } from "@ethersproject/transactions";
+import { Block, TransactionReceipt, TransactionResponse } from "boaproject-abstract-provider";
+import { getAddress, getContractAddress } from "boaproject-address";
+import { BigNumber } from "boaproject-bignumber";
+import { hexDataLength, hexDataSlice, hexValue, hexZeroPad, isHexString } from "boaproject-bytes";
+import { AddressZero } from "boaproject-constants";
+import { shallowCopy } from "boaproject-properties";
+import { AccessList, accessListify, parse as parseTransaction } from "boaproject-transactions";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "boaproject-logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 

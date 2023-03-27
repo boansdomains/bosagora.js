@@ -1,8 +1,8 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "@ethersproject/bytes": "^5.7.0",
-    "@ethersproject/logger": "^5.7.0",
+    "boaproject-bytes": "^5.7.2",
+    "boaproject-logger": "^5.7.2",
     "bn.js": "^5.2.1"
   },
   "description": "BigNumber library used in ethers.js.",
@@ -25,7 +25,7 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/bignumber",
+  "name": "boaproject-bignumber",
   "publishConfig": {
     "access": "public"
   },
@@ -40,5 +40,5 @@
   "sideEffects": false,
   "tarballHash": "0x98470bc3e3f959c3912641c94cfb20b381527a6b4cfa3bdb265d9a2f3b27ff85",
   "types": "./lib/index.d.ts",
-  "version": "5.7.0"
+  "version": "5.7.2"
 }

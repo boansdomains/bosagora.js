@@ -23560,6 +23560,21 @@
 	    "arbitrum-goerli": { chainId: 421613, name: "arbitrum-goerli" },
 	    bnb: { chainId: 56, name: "bnb" },
 	    bnbt: { chainId: 97, name: "bnbt" },
+	    bosagora_mainnet: {
+	        chainId: 2151,
+	        ensAddress: "0xA32505eE9dAEF7f6189e699fD0f6983af8C97Cac",
+	        name: "agora_mainnet",
+	    },
+	    bosagora_testnet: {
+	        chainId: 2019,
+	        ensAddress: "0xA32505eE9dAEF7f6189e699fD0f6983af8C97Cac",
+	        name: "bosagora_testnet",
+	    },
+	    bosagora_michael: {
+	        chainId: 34559,
+	        ensAddress: "0xA32505eE9dAEF7f6189e699fD0f6983af8C97Cac",
+	        name: "bosagora_michael",
+	    },
 	};
 	/**
 	 *  getNetwork
@@ -25947,13 +25962,13 @@
 	                        this._events.forEach(function (event) {
 	                            switch (event.type) {
 	                                case "tx": {
-	                                    var hash_2 = event.hash;
-	                                    var runner = _this.getTransactionReceipt(hash_2).then(function (receipt) {
+	                                    var hash_1 = event.hash;
+	                                    var runner = _this.getTransactionReceipt(hash_1).then(function (receipt) {
 	                                        if (!receipt || receipt.blockNumber == null) {
 	                                            return null;
 	                                        }
-	                                        _this._emitted["t:" + hash_2] = receipt.blockNumber;
-	                                        _this.emit(hash_2, receipt);
+	                                        _this._emitted["t:" + hash_1] = receipt.blockNumber;
+	                                        _this.emit(hash_1, receipt);
 	                                        return null;
 	                                    }).catch(function (error) { _this.emit("error", error); });
 	                                    runners.push(runner);
@@ -28344,9 +28359,9 @@
 	    }
 	}
 	catch (error) {
-	    var logger_2 = new lib.Logger(_version$I.version);
+	    var logger_1 = new lib.Logger(_version$I.version);
 	    exports.WebSocket = WS = function () {
-	        logger_2.throwError("WebSockets not supported in this environment", lib.Logger.errors.UNSUPPORTED_OPERATION, {
+	        logger_1.throwError("WebSockets not supported in this environment", lib.Logger.errors.UNSUPPORTED_OPERATION, {
 	            operation: "new WebSocket()"
 	        });
 	    };
@@ -31518,11 +31533,11 @@
 	Object.defineProperty(exports, "poll", { enumerable: true, get: function () { return lib$s.poll; } });
 	////////////////////////
 	// Enums
-	var sha2_2 = lib$k;
-	Object.defineProperty(exports, "SupportedAlgorithm", { enumerable: true, get: function () { return sha2_2.SupportedAlgorithm; } });
-	var strings_2 = lib$8;
-	Object.defineProperty(exports, "UnicodeNormalizationForm", { enumerable: true, get: function () { return strings_2.UnicodeNormalizationForm; } });
-	Object.defineProperty(exports, "Utf8ErrorReason", { enumerable: true, get: function () { return strings_2.Utf8ErrorReason; } });
+	var boaproject_sha2_2 = lib$k;
+	Object.defineProperty(exports, "SupportedAlgorithm", { enumerable: true, get: function () { return boaproject_sha2_2.SupportedAlgorithm; } });
+	var boaproject_strings_2 = lib$8;
+	Object.defineProperty(exports, "UnicodeNormalizationForm", { enumerable: true, get: function () { return boaproject_strings_2.UnicodeNormalizationForm; } });
+	Object.defineProperty(exports, "Utf8ErrorReason", { enumerable: true, get: function () { return boaproject_strings_2.Utf8ErrorReason; } });
 
 	});
 
@@ -31577,8 +31592,8 @@
 	exports.constants = constants;
 	var providers = __importStar(lib$t);
 	exports.providers = providers;
-	var providers_1 = lib$t;
-	Object.defineProperty(exports, "getDefaultProvider", { enumerable: true, get: function () { return providers_1.getDefaultProvider; } });
+	var boaproject_providers_1 = lib$t;
+	Object.defineProperty(exports, "getDefaultProvider", { enumerable: true, get: function () { return boaproject_providers_1.getDefaultProvider; } });
 
 	Object.defineProperty(exports, "Wordlist", { enumerable: true, get: function () { return lib$m.Wordlist; } });
 	Object.defineProperty(exports, "wordlists", { enumerable: true, get: function () { return lib$m.wordlists; } });

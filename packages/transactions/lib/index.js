@@ -20,17 +20,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parse = exports.serialize = exports.accessListify = exports.recoverAddress = exports.computeAddress = exports.TransactionTypes = void 0;
-var address_1 = require("@ethersproject/address");
-var bignumber_1 = require("@ethersproject/bignumber");
-var bytes_1 = require("@ethersproject/bytes");
-var constants_1 = require("@ethersproject/constants");
-var keccak256_1 = require("@ethersproject/keccak256");
-var properties_1 = require("@ethersproject/properties");
-var RLP = __importStar(require("@ethersproject/rlp"));
-var signing_key_1 = require("@ethersproject/signing-key");
-var logger_1 = require("@ethersproject/logger");
+var boaproject_address_1 = require("boaproject-address");
+var boaproject_bignumber_1 = require("boaproject-bignumber");
+var boaproject_bytes_1 = require("boaproject-bytes");
+var boaproject_constants_1 = require("boaproject-constants");
+var boaproject_keccak256_1 = require("boaproject-keccak256");
+var boaproject_properties_1 = require("boaproject-properties");
+var RLP = __importStar(require("boaproject-rlp"));
+var boaproject_signing_key_1 = require("boaproject-signing-key");
+var boaproject_logger_1 = require("boaproject-logger");
 var _version_1 = require("./_version");
-var logger = new logger_1.Logger(_version_1.version);
+var logger = new boaproject_logger_1.Logger(_version_1.version);
 var TransactionTypes;
 (function (TransactionTypes) {
     TransactionTypes[TransactionTypes["legacy"] = 0] = "legacy";
@@ -43,13 +43,13 @@ function handleAddress(value) {
     if (value === "0x") {
         return null;
     }
-    return (0, address_1.getAddress)(value);
+    return (0, boaproject_address_1.getAddress)(value);
 }
 function handleNumber(value) {
     if (value === "0x") {
-        return constants_1.Zero;
+        return boaproject_constants_1.Zero;
     }
-    return bignumber_1.BigNumber.from(value);
+    return boaproject_bignumber_1.BigNumber.from(value);
 }
 // Legacy Transaction Fields
 var transactionFields = [
@@ -64,16 +64,16 @@ var allowedTransactionKeys = {
     chainId: true, data: true, gasLimit: true, gasPrice: true, nonce: true, to: true, type: true, value: true
 };
 function computeAddress(key) {
-    var publicKey = (0, signing_key_1.computePublicKey)(key);
-    return (0, address_1.getAddress)((0, bytes_1.hexDataSlice)((0, keccak256_1.keccak256)((0, bytes_1.hexDataSlice)(publicKey, 1)), 12));
+    var publicKey = (0, boaproject_signing_key_1.computePublicKey)(key);
+    return (0, boaproject_address_1.getAddress)((0, boaproject_bytes_1.hexDataSlice)((0, boaproject_keccak256_1.keccak256)((0, boaproject_bytes_1.hexDataSlice)(publicKey, 1)), 12));
 }
 exports.computeAddress = computeAddress;
 function recoverAddress(digest, signature) {
-    return computeAddress((0, signing_key_1.recoverPublicKey)((0, bytes_1.arrayify)(digest), signature));
+    return computeAddress((0, boaproject_signing_key_1.recoverPublicKey)((0, boaproject_bytes_1.arrayify)(digest), signature));
 }
 exports.recoverAddress = recoverAddress;
 function formatNumber(value, name) {
-    var result = (0, bytes_1.stripZeros)(bignumber_1.BigNumber.from(value).toHexString());
+    var result = (0, boaproject_bytes_1.stripZeros)(boaproject_bignumber_1.BigNumber.from(value).toHexString());
     if (result.length > 32) {
         logger.throwArgumentError("invalid length for " + name, ("transaction:" + name), value);
     }
@@ -81,9 +81,9 @@ function formatNumber(value, name) {
 }
 function accessSetify(addr, storageKeys) {
     return {
-        address: (0, address_1.getAddress)(addr),
+        address: (0, boaproject_address_1.getAddress)(addr),
         storageKeys: (storageKeys || []).map(function (storageKey, index) {
-            if ((0, bytes_1.hexDataLength)(storageKey) !== 32) {
+            if ((0, boaproject_bytes_1.hexDataLength)(storageKey) !== 32) {
                 logger.throwArgumentError("invalid access list storageKey", "accessList[" + addr + ":" + index + "]", storageKey);
             }
             return storageKey.toLowerCase();
@@ -121,8 +121,8 @@ function _serializeEip1559(transaction, signature) {
     // EIP-1559 fees; otherwise they may not understand what they
     // think they are setting in terms of fee.
     if (transaction.gasPrice != null) {
-        var gasPrice = bignumber_1.BigNumber.from(transaction.gasPrice);
-        var maxFeePerGas = bignumber_1.BigNumber.from(transaction.maxFeePerGas || 0);
+        var gasPrice = boaproject_bignumber_1.BigNumber.from(transaction.gasPrice);
+        var maxFeePerGas = boaproject_bignumber_1.BigNumber.from(transaction.maxFeePerGas || 0);
         if (!gasPrice.eq(maxFeePerGas)) {
             logger.throwArgumentError("mismatch EIP-1559 gasPrice != maxFeePerGas", "tx", {
                 gasPrice: gasPrice,
@@ -136,18 +136,18 @@ function _serializeEip1559(transaction, signature) {
         formatNumber(transaction.maxPriorityFeePerGas || 0, "maxPriorityFeePerGas"),
         formatNumber(transaction.maxFeePerGas || 0, "maxFeePerGas"),
         formatNumber(transaction.gasLimit || 0, "gasLimit"),
-        ((transaction.to != null) ? (0, address_1.getAddress)(transaction.to) : "0x"),
+        ((transaction.to != null) ? (0, boaproject_address_1.getAddress)(transaction.to) : "0x"),
         formatNumber(transaction.value || 0, "value"),
         (transaction.data || "0x"),
         (formatAccessList(transaction.accessList || []))
     ];
     if (signature) {
-        var sig = (0, bytes_1.splitSignature)(signature);
+        var sig = (0, boaproject_bytes_1.splitSignature)(signature);
         fields.push(formatNumber(sig.recoveryParam, "recoveryParam"));
-        fields.push((0, bytes_1.stripZeros)(sig.r));
-        fields.push((0, bytes_1.stripZeros)(sig.s));
+        fields.push((0, boaproject_bytes_1.stripZeros)(sig.r));
+        fields.push((0, boaproject_bytes_1.stripZeros)(sig.s));
     }
-    return (0, bytes_1.hexConcat)(["0x02", RLP.encode(fields)]);
+    return (0, boaproject_bytes_1.hexConcat)(["0x02", RLP.encode(fields)]);
 }
 function _serializeEip2930(transaction, signature) {
     var fields = [
@@ -155,22 +155,22 @@ function _serializeEip2930(transaction, signature) {
         formatNumber(transaction.nonce || 0, "nonce"),
         formatNumber(transaction.gasPrice || 0, "gasPrice"),
         formatNumber(transaction.gasLimit || 0, "gasLimit"),
-        ((transaction.to != null) ? (0, address_1.getAddress)(transaction.to) : "0x"),
+        ((transaction.to != null) ? (0, boaproject_address_1.getAddress)(transaction.to) : "0x"),
         formatNumber(transaction.value || 0, "value"),
         (transaction.data || "0x"),
         (formatAccessList(transaction.accessList || []))
     ];
     if (signature) {
-        var sig = (0, bytes_1.splitSignature)(signature);
+        var sig = (0, boaproject_bytes_1.splitSignature)(signature);
         fields.push(formatNumber(sig.recoveryParam, "recoveryParam"));
-        fields.push((0, bytes_1.stripZeros)(sig.r));
-        fields.push((0, bytes_1.stripZeros)(sig.s));
+        fields.push((0, boaproject_bytes_1.stripZeros)(sig.r));
+        fields.push((0, boaproject_bytes_1.stripZeros)(sig.s));
     }
-    return (0, bytes_1.hexConcat)(["0x01", RLP.encode(fields)]);
+    return (0, boaproject_bytes_1.hexConcat)(["0x01", RLP.encode(fields)]);
 }
 // Legacy Transactions and EIP-155
 function _serialize(transaction, signature) {
-    (0, properties_1.checkProperties)(transaction, allowedTransactionKeys);
+    (0, boaproject_properties_1.checkProperties)(transaction, allowedTransactionKeys);
     var raw = [];
     transactionFields.forEach(function (fieldInfo) {
         var value = transaction[fieldInfo.name] || ([]);
@@ -178,19 +178,19 @@ function _serialize(transaction, signature) {
         if (fieldInfo.numeric) {
             options.hexPad = "left";
         }
-        value = (0, bytes_1.arrayify)((0, bytes_1.hexlify)(value, options));
+        value = (0, boaproject_bytes_1.arrayify)((0, boaproject_bytes_1.hexlify)(value, options));
         // Fixed-width field
         if (fieldInfo.length && value.length !== fieldInfo.length && value.length > 0) {
             logger.throwArgumentError("invalid length for " + fieldInfo.name, ("transaction:" + fieldInfo.name), value);
         }
         // Variable-width (with a maximum)
         if (fieldInfo.maxLength) {
-            value = (0, bytes_1.stripZeros)(value);
+            value = (0, boaproject_bytes_1.stripZeros)(value);
             if (value.length > fieldInfo.maxLength) {
                 logger.throwArgumentError("invalid length for " + fieldInfo.name, ("transaction:" + fieldInfo.name), value);
             }
         }
-        raw.push((0, bytes_1.hexlify)(value));
+        raw.push((0, boaproject_bytes_1.hexlify)(value));
     });
     var chainId = 0;
     if (transaction.chainId != null) {
@@ -200,13 +200,13 @@ function _serialize(transaction, signature) {
             logger.throwArgumentError("invalid transaction.chainId", "transaction", transaction);
         }
     }
-    else if (signature && !(0, bytes_1.isBytesLike)(signature) && signature.v > 28) {
+    else if (signature && !(0, boaproject_bytes_1.isBytesLike)(signature) && signature.v > 28) {
         // No chainId provided, but the signature is signing with EIP-155; derive chainId
         chainId = Math.floor((signature.v - 35) / 2);
     }
     // We have an EIP-155 transaction (chainId was specified and non-zero)
     if (chainId !== 0) {
-        raw.push((0, bytes_1.hexlify)(chainId)); // @TODO: hexValue?
+        raw.push((0, boaproject_bytes_1.hexlify)(chainId)); // @TODO: hexValue?
         raw.push("0x");
         raw.push("0x");
     }
@@ -216,7 +216,7 @@ function _serialize(transaction, signature) {
     }
     // The splitSignature will ensure the transaction has a recoveryParam in the
     // case that the signTransaction function only adds a v.
-    var sig = (0, bytes_1.splitSignature)(signature);
+    var sig = (0, boaproject_bytes_1.splitSignature)(signature);
     // We pushed a chainId and null r, s on for hashing only; remove those
     var v = 27 + sig.recoveryParam;
     if (chainId !== 0) {
@@ -232,9 +232,9 @@ function _serialize(transaction, signature) {
     else if (sig.v !== v) {
         logger.throwArgumentError("transaction.chainId/signature.v mismatch", "signature", signature);
     }
-    raw.push((0, bytes_1.hexlify)(v));
-    raw.push((0, bytes_1.stripZeros)((0, bytes_1.arrayify)(sig.r)));
-    raw.push((0, bytes_1.stripZeros)((0, bytes_1.arrayify)(sig.s)));
+    raw.push((0, boaproject_bytes_1.hexlify)(v));
+    raw.push((0, boaproject_bytes_1.stripZeros)((0, boaproject_bytes_1.arrayify)(sig.r)));
+    raw.push((0, boaproject_bytes_1.stripZeros)((0, boaproject_bytes_1.arrayify)(sig.s)));
     return RLP.encode(raw);
 }
 function serialize(transaction, signature) {
@@ -254,7 +254,7 @@ function serialize(transaction, signature) {
         default:
             break;
     }
-    return logger.throwError("unsupported transaction type: " + transaction.type, logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+    return logger.throwError("unsupported transaction type: " + transaction.type, boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
         operation: "serializeTransaction",
         transactionType: transaction.type
     });
@@ -271,10 +271,10 @@ function _parseEipSignature(tx, fields, serialize) {
     catch (error) {
         logger.throwArgumentError("invalid v for transaction type: 1", "v", fields[0]);
     }
-    tx.r = (0, bytes_1.hexZeroPad)(fields[1], 32);
-    tx.s = (0, bytes_1.hexZeroPad)(fields[2], 32);
+    tx.r = (0, boaproject_bytes_1.hexZeroPad)(fields[1], 32);
+    tx.s = (0, boaproject_bytes_1.hexZeroPad)(fields[2], 32);
     try {
-        var digest = (0, keccak256_1.keccak256)(serialize(tx));
+        var digest = (0, boaproject_keccak256_1.keccak256)(serialize(tx));
         tx.from = recoverAddress(digest, { r: tx.r, s: tx.s, recoveryParam: tx.v });
     }
     catch (error) { }
@@ -282,7 +282,7 @@ function _parseEipSignature(tx, fields, serialize) {
 function _parseEip1559(payload) {
     var transaction = RLP.decode(payload.slice(1));
     if (transaction.length !== 9 && transaction.length !== 12) {
-        logger.throwArgumentError("invalid component count for transaction type: 2", "payload", (0, bytes_1.hexlify)(payload));
+        logger.throwArgumentError("invalid component count for transaction type: 2", "payload", (0, boaproject_bytes_1.hexlify)(payload));
     }
     var maxPriorityFeePerGas = handleNumber(transaction[2]);
     var maxFeePerGas = handleNumber(transaction[3]);
@@ -303,14 +303,14 @@ function _parseEip1559(payload) {
     if (transaction.length === 9) {
         return tx;
     }
-    tx.hash = (0, keccak256_1.keccak256)(payload);
+    tx.hash = (0, boaproject_keccak256_1.keccak256)(payload);
     _parseEipSignature(tx, transaction.slice(9), _serializeEip1559);
     return tx;
 }
 function _parseEip2930(payload) {
     var transaction = RLP.decode(payload.slice(1));
     if (transaction.length !== 8 && transaction.length !== 11) {
-        logger.throwArgumentError("invalid component count for transaction type: 1", "payload", (0, bytes_1.hexlify)(payload));
+        logger.throwArgumentError("invalid component count for transaction type: 1", "payload", (0, boaproject_bytes_1.hexlify)(payload));
     }
     var tx = {
         type: 1,
@@ -327,7 +327,7 @@ function _parseEip2930(payload) {
     if (transaction.length === 8) {
         return tx;
     }
-    tx.hash = (0, keccak256_1.keccak256)(payload);
+    tx.hash = (0, boaproject_keccak256_1.keccak256)(payload);
     _parseEipSignature(tx, transaction.slice(8), _serializeEip2930);
     return tx;
 }
@@ -351,15 +351,15 @@ function _parse(rawTransaction) {
         return tx;
     }
     try {
-        tx.v = bignumber_1.BigNumber.from(transaction[6]).toNumber();
+        tx.v = boaproject_bignumber_1.BigNumber.from(transaction[6]).toNumber();
     }
     catch (error) {
         // @TODO: What makes snese to do? The v is too big
         return tx;
     }
-    tx.r = (0, bytes_1.hexZeroPad)(transaction[7], 32);
-    tx.s = (0, bytes_1.hexZeroPad)(transaction[8], 32);
-    if (bignumber_1.BigNumber.from(tx.r).isZero() && bignumber_1.BigNumber.from(tx.s).isZero()) {
+    tx.r = (0, boaproject_bytes_1.hexZeroPad)(transaction[7], 32);
+    tx.s = (0, boaproject_bytes_1.hexZeroPad)(transaction[8], 32);
+    if (boaproject_bignumber_1.BigNumber.from(tx.r).isZero() && boaproject_bignumber_1.BigNumber.from(tx.s).isZero()) {
         // EIP-155 unsigned transaction
         tx.chainId = tx.v;
         tx.v = 0;
@@ -373,23 +373,23 @@ function _parse(rawTransaction) {
         var recoveryParam = tx.v - 27;
         var raw = transaction.slice(0, 6);
         if (tx.chainId !== 0) {
-            raw.push((0, bytes_1.hexlify)(tx.chainId));
+            raw.push((0, boaproject_bytes_1.hexlify)(tx.chainId));
             raw.push("0x");
             raw.push("0x");
             recoveryParam -= tx.chainId * 2 + 8;
         }
-        var digest = (0, keccak256_1.keccak256)(RLP.encode(raw));
+        var digest = (0, boaproject_keccak256_1.keccak256)(RLP.encode(raw));
         try {
-            tx.from = recoverAddress(digest, { r: (0, bytes_1.hexlify)(tx.r), s: (0, bytes_1.hexlify)(tx.s), recoveryParam: recoveryParam });
+            tx.from = recoverAddress(digest, { r: (0, boaproject_bytes_1.hexlify)(tx.r), s: (0, boaproject_bytes_1.hexlify)(tx.s), recoveryParam: recoveryParam });
         }
         catch (error) { }
-        tx.hash = (0, keccak256_1.keccak256)(rawTransaction);
+        tx.hash = (0, boaproject_keccak256_1.keccak256)(rawTransaction);
     }
     tx.type = null;
     return tx;
 }
 function parse(rawTransaction) {
-    var payload = (0, bytes_1.arrayify)(rawTransaction);
+    var payload = (0, boaproject_bytes_1.arrayify)(rawTransaction);
     // Legacy and EIP-155 Transactions
     if (payload[0] > 0x7f) {
         return _parse(payload);
@@ -403,7 +403,7 @@ function parse(rawTransaction) {
         default:
             break;
     }
-    return logger.throwError("unsupported transaction type: " + payload[0], logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+    return logger.throwError("unsupported transaction type: " + payload[0], boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
         operation: "parseTransaction",
         transactionType: payload[0]
     });

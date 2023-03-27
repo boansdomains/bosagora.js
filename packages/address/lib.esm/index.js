@@ -1,9 +1,9 @@
 "use strict";
-import { arrayify, concat, hexDataLength, hexDataSlice, isHexString, stripZeros } from "@ethersproject/bytes";
-import { BigNumber, _base16To36, _base36To16 } from "@ethersproject/bignumber";
-import { keccak256 } from "@ethersproject/keccak256";
-import { encode } from "@ethersproject/rlp";
-import { Logger } from "@ethersproject/logger";
+import { arrayify, concat, hexDataLength, hexDataSlice, isHexString, stripZeros } from "boaproject-bytes";
+import { BigNumber, _base16To36, _base36To16 } from "boaproject-bignumber";
+import { keccak256 } from "boaproject-keccak256";
+import { encode } from "boaproject-rlp";
+import { Logger } from "boaproject-logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 function getChecksumAddress(address) {

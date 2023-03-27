@@ -1,6 +1,6 @@
-import { Block, TransactionReceipt, TransactionResponse } from "@ethersproject/abstract-provider";
-import { BigNumber } from "@ethersproject/bignumber";
-import { AccessList } from "@ethersproject/transactions";
+import { Block, TransactionReceipt, TransactionResponse } from "boaproject-abstract-provider";
+import { BigNumber } from "boaproject-bignumber";
+import { AccessList } from "boaproject-transactions";
 export declare type FormatFunc = (value: any) => any;
 export declare type FormatFuncs = {
     [key: string]: FormatFunc;

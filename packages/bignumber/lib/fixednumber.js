@@ -1,10 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FixedNumber = exports.FixedFormat = exports.parseFixed = exports.formatFixed = void 0;
-var bytes_1 = require("@ethersproject/bytes");
-var logger_1 = require("@ethersproject/logger");
+var boaproject_bytes_1 = require("boaproject-bytes");
+var boaproject_logger_1 = require("boaproject-logger");
 var _version_1 = require("./_version");
-var logger = new logger_1.Logger(_version_1.version);
+var logger = new boaproject_logger_1.Logger(_version_1.version);
 var bignumber_1 = require("./bignumber");
 var _constructorGuard = {};
 var Zero = bignumber_1.BigNumber.from(0);
@@ -14,7 +14,7 @@ function throwFault(message, fault, operation, value) {
     if (value !== undefined) {
         params.value = value;
     }
-    return logger.throwError(message, logger_1.Logger.errors.NUMERIC_FAULT, params);
+    return logger.throwError(message, boaproject_logger_1.Logger.errors.NUMERIC_FAULT, params);
 }
 // Constant to pull zeros from for multipliers
 var zeros = "0";
@@ -120,7 +120,7 @@ exports.parseFixed = parseFixed;
 var FixedFormat = /** @class */ (function () {
     function FixedFormat(constructorGuard, signed, width, decimals) {
         if (constructorGuard !== _constructorGuard) {
-            logger.throwError("cannot use FixedFormat constructor; use FixedFormat.from", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("cannot use FixedFormat constructor; use FixedFormat.from", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                 operation: "new FixedFormat"
             });
         }
@@ -186,7 +186,7 @@ exports.FixedFormat = FixedFormat;
 var FixedNumber = /** @class */ (function () {
     function FixedNumber(constructorGuard, hex, value, format) {
         if (constructorGuard !== _constructorGuard) {
-            logger.throwError("cannot use FixedNumber constructor; use FixedNumber.from", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("cannot use FixedNumber constructor; use FixedNumber.from", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                 operation: "new FixedFormat"
             });
         }
@@ -284,7 +284,7 @@ var FixedNumber = /** @class */ (function () {
             logger.throwArgumentError("invalid byte width", "width", width);
         }
         var hex = bignumber_1.BigNumber.from(this._hex).fromTwos(this.format.width).toTwos(width).toHexString();
-        return (0, bytes_1.hexZeroPad)(hex, width / 8);
+        return (0, boaproject_bytes_1.hexZeroPad)(hex, width / 8);
     };
     FixedNumber.prototype.toUnsafeFloat = function () { return parseFloat(this.toString()); };
     FixedNumber.prototype.toFormat = function (format) {
@@ -319,7 +319,7 @@ var FixedNumber = /** @class */ (function () {
         }
         else {
             hex = numeric.toHexString();
-            hex = (0, bytes_1.hexZeroPad)(hex, fixedFormat.width / 8);
+            hex = (0, boaproject_bytes_1.hexZeroPad)(hex, fixedFormat.width / 8);
         }
         var decimal = formatFixed(numeric, fixedFormat.decimals);
         return new FixedNumber(_constructorGuard, hex, decimal, fixedFormat);
@@ -329,7 +329,7 @@ var FixedNumber = /** @class */ (function () {
             format = "fixed";
         }
         var fixedFormat = FixedFormat.from(format);
-        if ((0, bytes_1.arrayify)(value).length > fixedFormat.width / 8) {
+        if ((0, boaproject_bytes_1.arrayify)(value).length > fixedFormat.width / 8) {
             throw new Error("overflow");
         }
         var numeric = bignumber_1.BigNumber.from(value);
@@ -344,7 +344,7 @@ var FixedNumber = /** @class */ (function () {
         if (typeof (value) === "string") {
             return FixedNumber.fromString(value, format);
         }
-        if ((0, bytes_1.isBytes)(value)) {
+        if ((0, boaproject_bytes_1.isBytes)(value)) {
             return FixedNumber.fromBytes(value, format);
         }
         try {
@@ -352,7 +352,7 @@ var FixedNumber = /** @class */ (function () {
         }
         catch (error) {
             // Allow NUMERIC_FAULT to bubble up
-            if (error.code !== logger_1.Logger.errors.INVALID_ARGUMENT) {
+            if (error.code !== boaproject_logger_1.Logger.errors.INVALID_ARGUMENT) {
                 throw error;
             }
         }

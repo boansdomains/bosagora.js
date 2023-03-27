@@ -109,9 +109,9 @@ everyone else with packages they do not need.
 
 We will keep a list of useful packages here.
 
-- `@ethersproject/experimental` ([documentation](https://docs.ethers.io/v5/api/experimental/))
-- `@ethersproject/cli` ([documentation](https://docs.ethers.io/v5/cli/))
-- `@ethersproject/hardware-wallets` ([documentation](https://docs.ethers.io/v5/api/other/hardware/))
+- `boaproject-experimental` ([documentation](https://docs.ethers.io/v5/api/experimental/))
+- `boaproject-cli` ([documentation](https://docs.ethers.io/v5/cli/))
+- `boaproject-hardware-wallets` ([documentation](https://docs.ethers.io/v5/api/other/hardware/))
 
 
 License

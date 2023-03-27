@@ -2,18 +2,18 @@
 
 // See: https://github.com/ethereum/wiki/wiki/JSON-RPC
 
-import { Provider, TransactionRequest, TransactionResponse } from "@ethersproject/abstract-provider";
-import { Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from "@ethersproject/abstract-signer";
-import { BigNumber } from "@ethersproject/bignumber";
-import { Bytes, hexlify, hexValue, hexZeroPad, isHexString } from "@ethersproject/bytes";
-import { _TypedDataEncoder } from "@ethersproject/hash";
-import { Network, Networkish } from "@ethersproject/networks";
-import { checkProperties, deepCopy, Deferrable, defineReadOnly, getStatic, resolveProperties, shallowCopy } from "@ethersproject/properties";
-import { toUtf8Bytes } from "@ethersproject/strings";
-import { AccessList, accessListify } from "@ethersproject/transactions";
-import { ConnectionInfo, fetchJson, poll } from "@ethersproject/web";
+import { Provider, TransactionRequest, TransactionResponse } from "boaproject-abstract-provider";
+import { Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from "boaproject-abstract-signer";
+import { BigNumber } from "boaproject-bignumber";
+import { Bytes, hexlify, hexValue, hexZeroPad, isHexString } from "boaproject-bytes";
+import { _TypedDataEncoder } from "boaproject-hash";
+import { Network, Networkish } from "boaproject-networks";
+import { checkProperties, deepCopy, Deferrable, defineReadOnly, getStatic, resolveProperties, shallowCopy } from "boaproject-properties";
+import { toUtf8Bytes } from "boaproject-strings";
+import { AccessList, accessListify } from "boaproject-transactions";
+import { ConnectionInfo, fetchJson, poll } from "boaproject-web";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "boaproject-logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 

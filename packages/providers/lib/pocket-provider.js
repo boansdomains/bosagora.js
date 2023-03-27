@@ -16,9 +16,9 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PocketProvider = void 0;
-var logger_1 = require("@ethersproject/logger");
+var boaproject_logger_1 = require("boaproject-logger");
 var _version_1 = require("./_version");
-var logger = new logger_1.Logger(_version_1.version);
+var logger = new boaproject_logger_1.Logger(_version_1.version);
 var url_json_rpc_provider_1 = require("./url-json-rpc-provider");
 var defaultApplicationId = "62e1ad51b37b8e00394bda3b";
 var PocketProvider = /** @class */ (function (_super) {
@@ -76,7 +76,7 @@ var PocketProvider = /** @class */ (function (_super) {
                 host = "eth-ropsten.gateway.pokt.network";
                 break;
             default:
-                logger.throwError("unsupported network", logger_1.Logger.errors.INVALID_ARGUMENT, {
+                logger.throwError("unsupported network", boaproject_logger_1.Logger.errors.INVALID_ARGUMENT, {
                     argument: "network",
                     value: network
                 });

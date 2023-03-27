@@ -16,8 +16,8 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AddressCoder = void 0;
-var address_1 = require("@ethersproject/address");
-var bytes_1 = require("@ethersproject/bytes");
+var boaproject_address_1 = require("boaproject-address");
+var boaproject_bytes_1 = require("boaproject-bytes");
 var abstract_coder_1 = require("./abstract-coder");
 var AddressCoder = /** @class */ (function (_super) {
     __extends(AddressCoder, _super);
@@ -29,7 +29,7 @@ var AddressCoder = /** @class */ (function (_super) {
     };
     AddressCoder.prototype.encode = function (writer, value) {
         try {
-            value = (0, address_1.getAddress)(value);
+            value = (0, boaproject_address_1.getAddress)(value);
         }
         catch (error) {
             this._throwError(error.message, value);
@@ -37,7 +37,7 @@ var AddressCoder = /** @class */ (function (_super) {
         return writer.writeValue(value);
     };
     AddressCoder.prototype.decode = function (reader) {
-        return (0, address_1.getAddress)((0, bytes_1.hexZeroPad)(reader.readValue().toHexString(), 20));
+        return (0, boaproject_address_1.getAddress)((0, boaproject_bytes_1.hexZeroPad)(reader.readValue().toHexString(), 20));
     };
     return AddressCoder;
 }(abstract_coder_1.Coder));

@@ -24,7 +24,7 @@ const {
     messagePrefix,
     hashMessage
 
-} = require("@ethersproject/hash");
+} = require("boaproject-hash");
 ```
 
 

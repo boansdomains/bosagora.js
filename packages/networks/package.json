@@ -1,7 +1,7 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "@ethersproject/logger": "^5.7.0"
+    "boaproject-logger": "^5.7.2"
   },
   "description": "Network definitions for ethers.",
   "ethereum": "donations.ethers.eth",
@@ -22,7 +22,7 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/networks",
+  "name": "boaproject-networks",
   "publishConfig": {
     "access": "public"
   },
@@ -37,5 +37,5 @@
   "sideEffects": false,
   "tarballHash": "0x02da3534ce06e0cb8756a176bd002de79b4b1f146419a0ab2bcb7e22f6fb85be",
   "types": "./lib/index.d.ts",
-  "version": "5.7.0"
+  "version": "5.7.2"
 }

@@ -1,12 +1,12 @@
 
-import { Network } from "@ethersproject/networks";
+import { Network } from "boaproject-networks";
 
 import { showThrottleMessage } from "./formatter";
 import { UrlJsonRpcProvider } from "./url-json-rpc-provider";
 
-import type { ConnectionInfo } from "@ethersproject/web";
+import type { ConnectionInfo } from "boaproject-web";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "boaproject-logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 

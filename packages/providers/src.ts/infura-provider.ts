@@ -1,13 +1,13 @@
 "use strict";
 
-import { Network, Networkish } from "@ethersproject/networks";
-import { defineReadOnly } from "@ethersproject/properties";
-import { ConnectionInfo } from "@ethersproject/web";
+import { Network, Networkish } from "boaproject-networks";
+import { defineReadOnly } from "boaproject-properties";
+import { ConnectionInfo } from "boaproject-web";
 
 import { WebSocketProvider } from "./websocket-provider";
 import { CommunityResourcable, showThrottleMessage } from "./formatter";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "boaproject-logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 

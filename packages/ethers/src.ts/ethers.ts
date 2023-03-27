@@ -1,30 +1,30 @@
 "use strict";
 
-import { BaseContract, Contract, ContractFactory } from "@ethersproject/contracts";
+import { BaseContract, Contract, ContractFactory } from "boaproject-contracts";
 
-import { BigNumber, FixedNumber } from "@ethersproject/bignumber";
+import { BigNumber, FixedNumber } from "boaproject-bignumber";
 
-import { Signer, VoidSigner } from "@ethersproject/abstract-signer";
-import { Wallet } from "@ethersproject/wallet";
+import { Signer, VoidSigner } from "boaproject-abstract-signer";
+import { Wallet } from "boaproject-wallet";
 
-import * as constants from "@ethersproject/constants";
+import * as constants from "boaproject-constants";
 
-import * as providers from "@ethersproject/providers";
-import { getDefaultProvider } from "@ethersproject/providers";
+import * as providers from "boaproject-providers";
+import { getDefaultProvider } from "boaproject-providers";
 
-import { Wordlist, wordlists} from "@ethersproject/wordlists";
+import { Wordlist, wordlists} from "boaproject-wordlists";
 
 import * as utils from "./utils";
 
-import { ErrorCode as errors, Logger } from "@ethersproject/logger";
+import { ErrorCode as errors, Logger } from "boaproject-logger";
 
 ////////////////////////
 // Types
 
-import type { TypedDataDomain, TypedDataField } from "@ethersproject/abstract-signer";
-import { BigNumberish } from "@ethersproject/bignumber";
-import { Bytes, BytesLike, Signature } from "@ethersproject/bytes";
-import { Transaction, UnsignedTransaction } from "@ethersproject/transactions";
+import type { TypedDataDomain, TypedDataField } from "boaproject-abstract-signer";
+import { BigNumberish } from "boaproject-bignumber";
+import { Bytes, BytesLike, Signature } from "boaproject-bytes";
+import { Transaction, UnsignedTransaction } from "boaproject-transactions";
 
 
 ////////////////////////
@@ -53,7 +53,7 @@ import {
     PopulatedTransaction,
 
     ContractInterface
-} from "@ethersproject/contracts";
+} from "boaproject-contracts";
 
 
 ////////////////////////

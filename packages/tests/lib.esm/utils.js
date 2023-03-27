@@ -1,6 +1,6 @@
 /* istanbul ignore file */
 'use strict';
-import { ethers } from "ethers";
+import { ethers } from "boa-ethers";
 function randomBytes(seed, lower, upper) {
     if (!upper) {
         upper = lower;

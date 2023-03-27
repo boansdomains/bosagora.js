@@ -57,7 +57,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = __importDefault(require("fs"));
 var path_1 = require("path");
-var asm_1 = require("@ethersproject/asm");
+var boaproject_asm_1 = require("boaproject-asm");
 var cli_1 = require("../cli");
 function repeat(text, length) {
     if (text.length === 0) {
@@ -203,15 +203,15 @@ var AssemblePlugin = /** @class */ (function (_super) {
                 switch (_c.label) {
                     case 0:
                         if (!this.disassemble) return [3 /*break*/, 1];
-                        console.log((0, asm_1.formatBytecode)((0, asm_1.disassemble)(this.content)));
+                        console.log((0, boaproject_asm_1.formatBytecode)((0, boaproject_asm_1.disassemble)(this.content)));
                         return [3 /*break*/, 4];
                     case 1:
                         _c.trys.push([1, 3, , 4]);
-                        ast = (0, asm_1.parse)(this.content, {
+                        ast = (0, boaproject_asm_1.parse)(this.content, {
                             ignoreWarnings: !!this.ignoreWarnings
                         });
                         _b = (_a = console).log;
-                        return [4 /*yield*/, (0, asm_1.assemble)(ast, {
+                        return [4 /*yield*/, (0, boaproject_asm_1.assemble)(ast, {
                                 defines: this.defines,
                                 filename: this.filename,
                                 positionIndependentCode: this.pic,
@@ -224,10 +224,10 @@ var AssemblePlugin = /** @class */ (function (_super) {
                         error_1 = _c.sent();
                         if (error_1.errors) {
                             (error_1.errors).forEach(function (error) {
-                                if (error.severity === asm_1.SemanticErrorSeverity.error) {
+                                if (error.severity === boaproject_asm_1.SemanticErrorSeverity.error) {
                                     console.log("Error: " + error.message + " (line: " + (error.node.location.line + 1) + ")");
                                 }
-                                else if (error.severity === asm_1.SemanticErrorSeverity.warning) {
+                                else if (error.severity === boaproject_asm_1.SemanticErrorSeverity.warning) {
                                     console.log("Warning: " + error.message + " (line: " + (error.node.location.line + 1) + ")");
                                 }
                                 else {

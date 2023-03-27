@@ -53,9 +53,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CloudflareProvider = void 0;
 var url_json_rpc_provider_1 = require("./url-json-rpc-provider");
-var logger_1 = require("@ethersproject/logger");
+var boaproject_logger_1 = require("boaproject-logger");
 var _version_1 = require("./_version");
-var logger = new logger_1.Logger(_version_1.version);
+var logger = new boaproject_logger_1.Logger(_version_1.version);
 var CloudflareProvider = /** @class */ (function (_super) {
     __extends(CloudflareProvider, _super);
     function CloudflareProvider() {

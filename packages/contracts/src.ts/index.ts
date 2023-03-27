@@ -1,15 +1,15 @@
 "use strict";
 
-import { checkResultErrors, EventFragment, Fragment, FunctionFragment, Indexed, Interface, JsonFragment, LogDescription, ParamType, Result } from "@ethersproject/abi";
-import { Block, BlockTag, Filter, FilterByBlockHash, Listener, Log, Provider, TransactionReceipt, TransactionRequest, TransactionResponse } from "@ethersproject/abstract-provider";
-import { Signer, VoidSigner } from "@ethersproject/abstract-signer";
-import { getAddress, getContractAddress } from "@ethersproject/address";
-import { BigNumber, BigNumberish } from "@ethersproject/bignumber";
-import { arrayify, BytesLike, concat, hexlify, isBytes, isHexString } from "@ethersproject/bytes";
-import { Deferrable, defineReadOnly, deepCopy, getStatic, resolveProperties, shallowCopy } from "@ethersproject/properties";
-import { AccessList, accessListify, AccessListish } from "@ethersproject/transactions";
+import { checkResultErrors, EventFragment, Fragment, FunctionFragment, Indexed, Interface, JsonFragment, LogDescription, ParamType, Result } from "boaproject-abi";
+import { Block, BlockTag, Filter, FilterByBlockHash, Listener, Log, Provider, TransactionReceipt, TransactionRequest, TransactionResponse } from "boaproject-abstract-provider";
+import { Signer, VoidSigner } from "boaproject-abstract-signer";
+import { getAddress, getContractAddress } from "boaproject-address";
+import { BigNumber, BigNumberish } from "boaproject-bignumber";
+import { arrayify, BytesLike, concat, hexlify, isBytes, isHexString } from "boaproject-bytes";
+import { Deferrable, defineReadOnly, deepCopy, getStatic, resolveProperties, shallowCopy } from "boaproject-properties";
+import { AccessList, accessListify, AccessListish } from "boaproject-transactions";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "boaproject-logger";
 import { version } from "./_version";
 
 const logger = new Logger(version);

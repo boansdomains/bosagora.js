@@ -1,6 +1,6 @@
-import { Bytes, concat } from "@ethersproject/bytes";
-import { keccak256 } from "@ethersproject/keccak256";
-import { toUtf8Bytes } from "@ethersproject/strings";
+import { Bytes, concat } from "boaproject-bytes";
+import { keccak256 } from "boaproject-keccak256";
+import { toUtf8Bytes } from "boaproject-strings";
 
 export const messagePrefix = "\x19Ethereum Signed Message:\n";
 

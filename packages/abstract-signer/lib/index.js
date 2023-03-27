@@ -52,17 +52,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.VoidSigner = exports.Signer = void 0;
-var properties_1 = require("@ethersproject/properties");
-var logger_1 = require("@ethersproject/logger");
+var boaproject_properties_1 = require("boaproject-properties");
+var boaproject_logger_1 = require("boaproject-logger");
 var _version_1 = require("./_version");
-var logger = new logger_1.Logger(_version_1.version);
+var logger = new boaproject_logger_1.Logger(_version_1.version);
 var allowedTransactionKeys = [
     "accessList", "ccipReadEnabled", "chainId", "customData", "data", "from", "gasLimit", "gasPrice", "maxFeePerGas", "maxPriorityFeePerGas", "nonce", "to", "type", "value"
 ];
 var forwardErrors = [
-    logger_1.Logger.errors.INSUFFICIENT_FUNDS,
-    logger_1.Logger.errors.NONCE_EXPIRED,
-    logger_1.Logger.errors.REPLACEMENT_UNDERPRICED,
+    boaproject_logger_1.Logger.errors.INSUFFICIENT_FUNDS,
+    boaproject_logger_1.Logger.errors.NONCE_EXPIRED,
+    boaproject_logger_1.Logger.errors.REPLACEMENT_UNDERPRICED,
 ];
 ;
 ;
@@ -72,7 +72,7 @@ var Signer = /** @class */ (function () {
     function Signer() {
         var _newTarget = this.constructor;
         logger.checkAbstract(_newTarget, Signer);
-        (0, properties_1.defineReadOnly)(this, "_isSigner", true);
+        (0, boaproject_properties_1.defineReadOnly)(this, "_isSigner", true);
     }
     ///////////////////
     // Sub-classes MAY override these
@@ -108,7 +108,7 @@ var Signer = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         this._checkProvider("estimateGas");
-                        return [4 /*yield*/, (0, properties_1.resolveProperties)(this.checkTransaction(transaction))];
+                        return [4 /*yield*/, (0, boaproject_properties_1.resolveProperties)(this.checkTransaction(transaction))];
                     case 1:
                         tx = _a.sent();
                         return [4 /*yield*/, this.provider.estimateGas(tx)];
@@ -125,7 +125,7 @@ var Signer = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         this._checkProvider("call");
-                        return [4 /*yield*/, (0, properties_1.resolveProperties)(this.checkTransaction(transaction))];
+                        return [4 /*yield*/, (0, boaproject_properties_1.resolveProperties)(this.checkTransaction(transaction))];
                     case 1:
                         tx = _a.sent();
                         return [4 /*yield*/, this.provider.call(tx, blockTag)];
@@ -220,7 +220,7 @@ var Signer = /** @class */ (function () {
                 logger.throwArgumentError("invalid transaction key: " + key, "transaction", transaction);
             }
         }
-        var tx = (0, properties_1.shallowCopy)(transaction);
+        var tx = (0, boaproject_properties_1.shallowCopy)(transaction);
         if (tx.from == null) {
             tx.from = this.getAddress();
         }
@@ -251,7 +251,7 @@ var Signer = /** @class */ (function () {
             var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, (0, properties_1.resolveProperties)(this.checkTransaction(transaction))];
+                    case 0: return [4 /*yield*/, (0, boaproject_properties_1.resolveProperties)(this.checkTransaction(transaction))];
                     case 1:
                         tx = _a.sent();
                         if (tx.to != null) {
@@ -324,7 +324,7 @@ var Signer = /** @class */ (function () {
                                 // Network doesn't support EIP-1559...
                                 // ...but they are trying to use EIP-1559 properties
                                 if (hasEip1559) {
-                                    logger.throwError("network does not support EIP-1559", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+                                    logger.throwError("network does not support EIP-1559", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                                         operation: "populateTransaction"
                                     });
                                 }
@@ -337,7 +337,7 @@ var Signer = /** @class */ (function () {
                             }
                             else {
                                 // getFeeData has failed us.
-                                logger.throwError("failed to get consistent fee data", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+                                logger.throwError("failed to get consistent fee data", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                                     operation: "signer.getFeeData"
                                 });
                             }
@@ -362,7 +362,7 @@ var Signer = /** @class */ (function () {
                                 if (forwardErrors.indexOf(error.code) >= 0) {
                                     throw error;
                                 }
-                                return logger.throwError("cannot estimate gas; transaction may fail or may require manual gas limit", logger_1.Logger.errors.UNPREDICTABLE_GAS_LIMIT, {
+                                return logger.throwError("cannot estimate gas; transaction may fail or may require manual gas limit", boaproject_logger_1.Logger.errors.UNPREDICTABLE_GAS_LIMIT, {
                                     error: error,
                                     tx: tx
                                 });
@@ -382,7 +382,7 @@ var Signer = /** @class */ (function () {
                                 return results[0];
                             });
                         }
-                        return [4 /*yield*/, (0, properties_1.resolveProperties)(tx)];
+                        return [4 /*yield*/, (0, boaproject_properties_1.resolveProperties)(tx)];
                     case 6: return [2 /*return*/, _a.sent()];
                 }
             });
@@ -392,7 +392,7 @@ var Signer = /** @class */ (function () {
     // Sub-classes SHOULD leave these alone
     Signer.prototype._checkProvider = function (operation) {
         if (!this.provider) {
-            logger.throwError("missing provider", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("missing provider", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                 operation: (operation || "_checkProvider")
             });
         }
@@ -407,8 +407,8 @@ var VoidSigner = /** @class */ (function (_super) {
     __extends(VoidSigner, _super);
     function VoidSigner(address, provider) {
         var _this = _super.call(this) || this;
-        (0, properties_1.defineReadOnly)(_this, "address", address);
-        (0, properties_1.defineReadOnly)(_this, "provider", provider || null);
+        (0, boaproject_properties_1.defineReadOnly)(_this, "address", address);
+        (0, boaproject_properties_1.defineReadOnly)(_this, "provider", provider || null);
         return _this;
     }
     VoidSigner.prototype.getAddress = function () {
@@ -416,7 +416,7 @@ var VoidSigner = /** @class */ (function (_super) {
     };
     VoidSigner.prototype._fail = function (message, operation) {
         return Promise.resolve().then(function () {
-            logger.throwError(message, logger_1.Logger.errors.UNSUPPORTED_OPERATION, { operation: operation });
+            logger.throwError(message, boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, { operation: operation });
         });
     };
     VoidSigner.prototype.signMessage = function (message) {

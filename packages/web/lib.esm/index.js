@@ -8,11 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { decode as base64Decode, encode as base64Encode } from "@ethersproject/base64";
-import { hexlify, isBytesLike } from "@ethersproject/bytes";
-import { shallowCopy } from "@ethersproject/properties";
-import { toUtf8Bytes, toUtf8String } from "@ethersproject/strings";
-import { Logger } from "@ethersproject/logger";
+import { decode as base64Decode, encode as base64Encode } from "boaproject-base64";
+import { hexlify, isBytesLike } from "boaproject-bytes";
+import { shallowCopy } from "boaproject-properties";
+import { toUtf8Bytes, toUtf8String } from "boaproject-strings";
+import { Logger } from "boaproject-logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 import { getUrl } from "./geturl";

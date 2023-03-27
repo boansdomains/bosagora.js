@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dnsEncode = exports.namehash = exports.isValidName = exports.ensNormalize = void 0;
-var bytes_1 = require("@ethersproject/bytes");
-var strings_1 = require("@ethersproject/strings");
-var keccak256_1 = require("@ethersproject/keccak256");
-var logger_1 = require("@ethersproject/logger");
+var boaproject_bytes_1 = require("boaproject-bytes");
+var boaproject_strings_1 = require("boaproject-strings");
+var boaproject_keccak256_1 = require("boaproject-keccak256");
+var boaproject_logger_1 = require("boaproject-logger");
 var _version_1 = require("./_version");
-var logger = new logger_1.Logger(_version_1.version);
+var logger = new boaproject_logger_1.Logger(_version_1.version);
 var lib_1 = require("./ens-normalize/lib");
 var Zeros = new Uint8Array(32);
 Zeros.fill(0);
@@ -17,7 +17,7 @@ function checkComponent(comp) {
     return comp;
 }
 function ensNameSplit(name) {
-    var bytes = (0, strings_1.toUtf8Bytes)((0, lib_1.ens_normalize)(name));
+    var bytes = (0, boaproject_strings_1.toUtf8Bytes)((0, lib_1.ens_normalize)(name));
     var comps = [];
     if (name.length === 0) {
         return comps;
@@ -39,7 +39,7 @@ function ensNameSplit(name) {
     return comps;
 }
 function ensNormalize(name) {
-    return ensNameSplit(name).map(function (comp) { return (0, strings_1.toUtf8String)(comp); }).join(".");
+    return ensNameSplit(name).map(function (comp) { return (0, boaproject_strings_1.toUtf8String)(comp); }).join(".");
 }
 exports.ensNormalize = ensNormalize;
 function isValidName(name) {
@@ -58,13 +58,13 @@ function namehash(name) {
     var result = Zeros;
     var comps = ensNameSplit(name);
     while (comps.length) {
-        result = (0, keccak256_1.keccak256)((0, bytes_1.concat)([result, (0, keccak256_1.keccak256)(comps.pop())]));
+        result = (0, boaproject_keccak256_1.keccak256)((0, boaproject_bytes_1.concat)([result, (0, boaproject_keccak256_1.keccak256)(comps.pop())]));
     }
-    return (0, bytes_1.hexlify)(result);
+    return (0, boaproject_bytes_1.hexlify)(result);
 }
 exports.namehash = namehash;
 function dnsEncode(name) {
-    return (0, bytes_1.hexlify)((0, bytes_1.concat)(ensNameSplit(name).map(function (comp) {
+    return (0, boaproject_bytes_1.hexlify)((0, boaproject_bytes_1.concat)(ensNameSplit(name).map(function (comp) {
         // DNS does not allow components over 63 bytes in length
         if (comp.length > 63) {
             throw new Error("invalid DNS encoded entry; length exceeds 63 bytes");

@@ -1,5 +1,5 @@
 "use strict";
-import { ethers } from "ethers";
+import { ethers } from "boa-ethers";
 export function randomBytes(seed, lower, upper) {
     if (!upper) {
         upper = lower;

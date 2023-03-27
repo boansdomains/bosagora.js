@@ -2,10 +2,10 @@
 
 import { EC } from "./elliptic";
 
-import { arrayify, BytesLike, hexDataLength, hexlify, hexZeroPad, Signature, SignatureLike, splitSignature } from "@ethersproject/bytes";
-import { defineReadOnly } from "@ethersproject/properties";
+import { arrayify, BytesLike, hexDataLength, hexlify, hexZeroPad, Signature, SignatureLike, splitSignature } from "boaproject-bytes";
+import { defineReadOnly } from "boaproject-properties";
 
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "boaproject-logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 

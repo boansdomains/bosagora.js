@@ -16,12 +16,12 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.InfuraProvider = exports.InfuraWebSocketProvider = void 0;
-var properties_1 = require("@ethersproject/properties");
+var boaproject_properties_1 = require("boaproject-properties");
 var websocket_provider_1 = require("./websocket-provider");
 var formatter_1 = require("./formatter");
-var logger_1 = require("@ethersproject/logger");
+var boaproject_logger_1 = require("boaproject-logger");
 var _version_1 = require("./_version");
-var logger = new logger_1.Logger(_version_1.version);
+var logger = new boaproject_logger_1.Logger(_version_1.version);
 var url_json_rpc_provider_1 = require("./url-json-rpc-provider");
 var defaultProjectId = "84842078b09946638c03157f83405213";
 var InfuraWebSocketProvider = /** @class */ (function (_super) {
@@ -31,15 +31,15 @@ var InfuraWebSocketProvider = /** @class */ (function (_super) {
         var provider = new InfuraProvider(network, apiKey);
         var connection = provider.connection;
         if (connection.password) {
-            logger.throwError("INFURA WebSocket project secrets unsupported", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("INFURA WebSocket project secrets unsupported", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                 operation: "InfuraProvider.getWebSocketProvider()"
             });
         }
         var url = connection.url.replace(/^http/i, "ws").replace("/v3/", "/ws/v3/");
         _this = _super.call(this, url, network) || this;
-        (0, properties_1.defineReadOnly)(_this, "apiKey", provider.projectId);
-        (0, properties_1.defineReadOnly)(_this, "projectId", provider.projectId);
-        (0, properties_1.defineReadOnly)(_this, "projectSecret", provider.projectSecret);
+        (0, boaproject_properties_1.defineReadOnly)(_this, "apiKey", provider.projectId);
+        (0, boaproject_properties_1.defineReadOnly)(_this, "projectId", provider.projectId);
+        (0, boaproject_properties_1.defineReadOnly)(_this, "projectSecret", provider.projectSecret);
         return _this;
     }
     InfuraWebSocketProvider.prototype.isCommunityResource = function () {
@@ -117,7 +117,7 @@ var InfuraProvider = /** @class */ (function (_super) {
                 host = "arbitrum-rinkeby.infura.io";
                 break;
             default:
-                logger.throwError("unsupported network", logger_1.Logger.errors.INVALID_ARGUMENT, {
+                logger.throwError("unsupported network", boaproject_logger_1.Logger.errors.INVALID_ARGUMENT, {
                     argument: "network",
                     value: network
                 });

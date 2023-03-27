@@ -52,14 +52,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EtherscanProvider = void 0;
-var bytes_1 = require("@ethersproject/bytes");
-var properties_1 = require("@ethersproject/properties");
-var transactions_1 = require("@ethersproject/transactions");
-var web_1 = require("@ethersproject/web");
+var boaproject_bytes_1 = require("boaproject-bytes");
+var boaproject_properties_1 = require("boaproject-properties");
+var boaproject_transactions_1 = require("boaproject-transactions");
+var boaproject_web_1 = require("boaproject-web");
 var formatter_1 = require("./formatter");
-var logger_1 = require("@ethersproject/logger");
+var boaproject_logger_1 = require("boaproject-logger");
 var _version_1 = require("./_version");
-var logger = new logger_1.Logger(_version_1.version);
+var logger = new boaproject_logger_1.Logger(_version_1.version);
 var base_provider_1 = require("./base-provider");
 // The transaction has already been sanitized by the calls in Provider
 function getTransactionPostData(transaction) {
@@ -74,15 +74,15 @@ function getTransactionPostData(transaction) {
         }
         // Quantity-types require no leading zero, unless 0
         if ({ type: true, gasLimit: true, gasPrice: true, maxFeePerGs: true, maxPriorityFeePerGas: true, nonce: true, value: true }[key]) {
-            value = (0, bytes_1.hexValue)((0, bytes_1.hexlify)(value));
+            value = (0, boaproject_bytes_1.hexValue)((0, boaproject_bytes_1.hexlify)(value));
         }
         else if (key === "accessList") {
-            value = "[" + (0, transactions_1.accessListify)(value).map(function (set) {
+            value = "[" + (0, boaproject_transactions_1.accessListify)(value).map(function (set) {
                 return "{address:\"" + set.address + "\",storageKeys:[\"" + set.storageKeys.join('","') + "\"]}";
             }).join(",") + "]";
         }
         else {
-            value = (0, bytes_1.hexlify)(value);
+            value = (0, boaproject_bytes_1.hexlify)(value);
         }
         result[key] = value;
     }
@@ -143,7 +143,7 @@ function checkLogTag(blockTag) {
 function checkError(method, error, transaction) {
     // Undo the "convenience" some nodes are attempting to prevent backwards
     // incompatibility; maybe for v6 consider forwarding reverts as errors
-    if (method === "call" && error.code === logger_1.Logger.errors.SERVER_ERROR) {
+    if (method === "call" && error.code === boaproject_logger_1.Logger.errors.SERVER_ERROR) {
         var e = error.error;
         // Etherscan keeps changing their string
         if (e && (e.message.match(/reverted/i) || e.message.match(/VM execution error/i))) {
@@ -152,10 +152,10 @@ function checkError(method, error, transaction) {
             if (data) {
                 data = "0x" + data.replace(/^.*0x/i, "");
             }
-            if ((0, bytes_1.isHexString)(data)) {
+            if ((0, boaproject_bytes_1.isHexString)(data)) {
                 return data;
             }
-            logger.throwError("missing revert data in call exception", logger_1.Logger.errors.CALL_EXCEPTION, {
+            logger.throwError("missing revert data in call exception", boaproject_logger_1.Logger.errors.CALL_EXCEPTION, {
                 error: error,
                 data: "0x"
             });
@@ -163,7 +163,7 @@ function checkError(method, error, transaction) {
     }
     // Get the message from any nested error structure
     var message = error.message;
-    if (error.code === logger_1.Logger.errors.SERVER_ERROR) {
+    if (error.code === boaproject_logger_1.Logger.errors.SERVER_ERROR) {
         if (error.error && typeof (error.error.message) === "string") {
             message = error.error.message;
         }
@@ -177,7 +177,7 @@ function checkError(method, error, transaction) {
     message = (message || "").toLowerCase();
     // "Insufficient funds. The account you tried to send transaction from does not have enough funds. Required 21464000000000 and got: 0"
     if (message.match(/insufficient funds/)) {
-        logger.throwError("insufficient funds for intrinsic transaction cost", logger_1.Logger.errors.INSUFFICIENT_FUNDS, {
+        logger.throwError("insufficient funds for intrinsic transaction cost", boaproject_logger_1.Logger.errors.INSUFFICIENT_FUNDS, {
             error: error,
             method: method,
             transaction: transaction
@@ -185,7 +185,7 @@ function checkError(method, error, transaction) {
     }
     // "Transaction with the same hash was already imported."
     if (message.match(/same hash was already imported|transaction nonce is too low|nonce too low/)) {
-        logger.throwError("nonce has already been used", logger_1.Logger.errors.NONCE_EXPIRED, {
+        logger.throwError("nonce has already been used", boaproject_logger_1.Logger.errors.NONCE_EXPIRED, {
             error: error,
             method: method,
             transaction: transaction
@@ -193,14 +193,14 @@ function checkError(method, error, transaction) {
     }
     // "Transaction gas price is too low. There is another transaction with same nonce in the queue. Try increasing the gas price or incrementing the nonce."
     if (message.match(/another transaction with same nonce/)) {
-        logger.throwError("replacement fee too low", logger_1.Logger.errors.REPLACEMENT_UNDERPRICED, {
+        logger.throwError("replacement fee too low", boaproject_logger_1.Logger.errors.REPLACEMENT_UNDERPRICED, {
             error: error,
             method: method,
             transaction: transaction
         });
     }
     if (message.match(/execution failed due to an exception|execution reverted/)) {
-        logger.throwError("cannot estimate gas; transaction may fail or may require manual gas limit", logger_1.Logger.errors.UNPREDICTABLE_GAS_LIMIT, {
+        logger.throwError("cannot estimate gas; transaction may fail or may require manual gas limit", boaproject_logger_1.Logger.errors.UNPREDICTABLE_GAS_LIMIT, {
             error: error,
             method: method,
             transaction: transaction
@@ -212,8 +212,8 @@ var EtherscanProvider = /** @class */ (function (_super) {
     __extends(EtherscanProvider, _super);
     function EtherscanProvider(network, apiKey) {
         var _this = _super.call(this, network) || this;
-        (0, properties_1.defineReadOnly)(_this, "baseUrl", _this.getBaseUrl());
-        (0, properties_1.defineReadOnly)(_this, "apiKey", apiKey || null);
+        (0, boaproject_properties_1.defineReadOnly)(_this, "baseUrl", _this.getBaseUrl());
+        (0, boaproject_properties_1.defineReadOnly)(_this, "apiKey", apiKey || null);
         return _this;
     }
     EtherscanProvider.prototype.getBaseUrl = function () {
@@ -287,13 +287,13 @@ var EtherscanProvider = /** @class */ (function (_super) {
                                 return key + "=" + payload[key];
                             }).join("&");
                         }
-                        return [4 /*yield*/, (0, web_1.fetchJson)(connection, payloadStr, procFunc || getJsonResult)];
+                        return [4 /*yield*/, (0, boaproject_web_1.fetchJson)(connection, payloadStr, procFunc || getJsonResult)];
                     case 1:
                         result = _a.sent();
                         this.emit("debug", {
                             action: "response",
                             request: url,
-                            response: (0, properties_1.deepCopy)(result),
+                            response: (0, boaproject_properties_1.deepCopy)(result),
                             provider: this
                         });
                         return [2 /*return*/, result];
@@ -421,12 +421,12 @@ var EtherscanProvider = /** @class */ (function (_super) {
                         // @TODO: We can handle slightly more complicated logs using the logs API
                         if (params.filter.topics && params.filter.topics.length > 0) {
                             if (params.filter.topics.length > 1) {
-                                logger.throwError("unsupported topic count", logger_1.Logger.errors.UNSUPPORTED_OPERATION, { topics: params.filter.topics });
+                                logger.throwError("unsupported topic count", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, { topics: params.filter.topics });
                             }
                             if (params.filter.topics.length === 1) {
                                 topic0 = params.filter.topics[0];
                                 if (typeof (topic0) !== "string" || topic0.length !== 66) {
-                                    logger.throwError("unsupported topic format", logger_1.Logger.errors.UNSUPPORTED_OPERATION, { topic0: topic0 });
+                                    logger.throwError("unsupported topic format", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, { topic0: topic0 });
                                 }
                                 args.topic0 = topic0;
                             }

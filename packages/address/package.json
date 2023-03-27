@@ -1,11 +1,11 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "@ethersproject/bignumber": "^5.7.0",
-    "@ethersproject/bytes": "^5.7.0",
-    "@ethersproject/keccak256": "^5.7.0",
-    "@ethersproject/logger": "^5.7.0",
-    "@ethersproject/rlp": "^5.7.0"
+    "boaproject-bignumber": "^5.7.2",
+    "boaproject-bytes": "^5.7.2",
+    "boaproject-keccak256": "^5.7.2",
+    "boaproject-logger": "^5.7.2",
+    "boaproject-rlp": "^5.7.2"
   },
   "description": "Utilities for handling Ethereum Addresses for ethers.",
   "ethereum": "donations.ethers.eth",
@@ -26,7 +26,7 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/address",
+  "name": "boaproject-address",
   "publishConfig": {
     "access": "public"
   },
@@ -41,5 +41,5 @@
   "sideEffects": false,
   "tarballHash": "0x6732663914c6efc33735eb97dc36ecaf0ecf4ff34ad1877ee7b842f1c27f98f4",
   "types": "./lib/index.d.ts",
-  "version": "5.7.0"
+  "version": "5.7.2"
 }

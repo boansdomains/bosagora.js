@@ -1,7 +1,7 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "@ethersproject/logger": "^5.7.0"
+    "boaproject-logger": "^5.7.2"
   },
   "description": "Bytes utility functions for ethers.",
   "ethereum": "donations.ethers.eth",
@@ -22,7 +22,7 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/bytes",
+  "name": "boaproject-bytes",
   "publishConfig": {
     "access": "public"
   },
@@ -39,5 +39,5 @@
   "sideEffects": false,
   "tarballHash": "0x5ce4e7b7716e28697fe07abcee74e4e8b4fa3b919b2807322ad6a282990db523",
   "types": "./lib/index.d.ts",
-  "version": "5.7.0"
+  "version": "5.7.2"
 }

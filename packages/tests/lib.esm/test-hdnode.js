@@ -1,7 +1,7 @@
 'use strict';
 import assert from "assert";
-import { ethers } from "ethers";
-import { loadTests, randomNumber } from "@ethersproject/testcases";
+import { ethers } from "boa-ethers";
+import { loadTests, randomNumber } from "boaproject-testcases";
 function randomCase(seed, text) {
     return text.split("").map(function (c, index) {
         if (randomNumber(seed + "-" + index, 0, 2)) {

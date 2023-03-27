@@ -16,12 +16,12 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AlchemyProvider = exports.AlchemyWebSocketProvider = void 0;
-var properties_1 = require("@ethersproject/properties");
+var boaproject_properties_1 = require("boaproject-properties");
 var formatter_1 = require("./formatter");
 var websocket_provider_1 = require("./websocket-provider");
-var logger_1 = require("@ethersproject/logger");
+var boaproject_logger_1 = require("boaproject-logger");
 var _version_1 = require("./_version");
-var logger = new logger_1.Logger(_version_1.version);
+var logger = new boaproject_logger_1.Logger(_version_1.version);
 var url_json_rpc_provider_1 = require("./url-json-rpc-provider");
 // This key was provided to ethers.js by Alchemy to be used by the
 // default provider, but it is recommended that for your own
@@ -36,7 +36,7 @@ var AlchemyWebSocketProvider = /** @class */ (function (_super) {
         var url = provider.connection.url.replace(/^http/i, "ws")
             .replace(".alchemyapi.", ".ws.alchemyapi.");
         _this = _super.call(this, url, provider.network) || this;
-        (0, properties_1.defineReadOnly)(_this, "apiKey", provider.apiKey);
+        (0, boaproject_properties_1.defineReadOnly)(_this, "apiKey", provider.apiKey);
         return _this;
     }
     AlchemyWebSocketProvider.prototype.isCommunityResource = function () {

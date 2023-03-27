@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import assert from "assert";
-import { ethers } from "ethers";
-import { loadTests } from "@ethersproject/testcases";
+import { ethers } from "boa-ethers";
+import { loadTests } from "boaproject-testcases";
 import * as utils from "./utils";
 describe('Test JSON Wallets', function () {
     let tests = loadTests('wallets');

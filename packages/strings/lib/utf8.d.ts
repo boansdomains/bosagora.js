@@ -1,4 +1,4 @@
-import { BytesLike } from "@ethersproject/bytes";
+import { BytesLike } from "boaproject-bytes";
 export declare enum UnicodeNormalizationForm {
     current = "",
     NFC = "NFC",

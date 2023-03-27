@@ -52,13 +52,13 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WebSocketProvider = void 0;
-var bignumber_1 = require("@ethersproject/bignumber");
-var properties_1 = require("@ethersproject/properties");
+var boaproject_bignumber_1 = require("boaproject-bignumber");
+var boaproject_properties_1 = require("boaproject-properties");
 var json_rpc_provider_1 = require("./json-rpc-provider");
 var ws_1 = require("./ws");
-var logger_1 = require("@ethersproject/logger");
+var boaproject_logger_1 = require("boaproject-logger");
 var _version_1 = require("./_version");
-var logger = new logger_1.Logger(_version_1.version);
+var logger = new boaproject_logger_1.Logger(_version_1.version);
 /**
  *  Notes:
  *
@@ -82,7 +82,7 @@ var WebSocketProvider = /** @class */ (function (_super) {
         var _this = this;
         // This will be added in the future; please open an issue to expedite
         if (network === "any") {
-            logger.throwError("WebSocketProvider does not support 'any' network yet", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("WebSocketProvider does not support 'any' network yet", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                 operation: "network:any"
             });
         }
@@ -95,15 +95,15 @@ var WebSocketProvider = /** @class */ (function (_super) {
         _this._pollingInterval = -1;
         _this._wsReady = false;
         if (typeof (url) === "string") {
-            (0, properties_1.defineReadOnly)(_this, "_websocket", new ws_1.WebSocket(_this.connection.url));
+            (0, boaproject_properties_1.defineReadOnly)(_this, "_websocket", new ws_1.WebSocket(_this.connection.url));
         }
         else {
-            (0, properties_1.defineReadOnly)(_this, "_websocket", url);
+            (0, boaproject_properties_1.defineReadOnly)(_this, "_websocket", url);
         }
-        (0, properties_1.defineReadOnly)(_this, "_requests", {});
-        (0, properties_1.defineReadOnly)(_this, "_subs", {});
-        (0, properties_1.defineReadOnly)(_this, "_subIds", {});
-        (0, properties_1.defineReadOnly)(_this, "_detectNetwork", _super.prototype.detectNetwork.call(_this));
+        (0, boaproject_properties_1.defineReadOnly)(_this, "_requests", {});
+        (0, boaproject_properties_1.defineReadOnly)(_this, "_subs", {});
+        (0, boaproject_properties_1.defineReadOnly)(_this, "_subIds", {});
+        (0, boaproject_properties_1.defineReadOnly)(_this, "_detectNetwork", _super.prototype.detectNetwork.call(_this));
         // Stall sending requests until the socket is open...
         _this.websocket.onopen = function () {
             _this._wsReady = true;
@@ -131,8 +131,8 @@ var WebSocketProvider = /** @class */ (function (_super) {
                     var error = null;
                     if (result.error) {
                         error = new Error(result.error.message || "unknown error");
-                        (0, properties_1.defineReadOnly)(error, "code", result.error.code || null);
-                        (0, properties_1.defineReadOnly)(error, "response", data);
+                        (0, boaproject_properties_1.defineReadOnly)(error, "code", result.error.code || null);
+                        (0, boaproject_properties_1.defineReadOnly)(error, "response", data);
                     }
                     else {
                         error = new Error("unknown error");
@@ -184,7 +184,7 @@ var WebSocketProvider = /** @class */ (function (_super) {
             return 0;
         },
         set: function (value) {
-            logger.throwError("cannot set polling interval on WebSocketProvider", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("cannot set polling interval on WebSocketProvider", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                 operation: "setPollingInterval"
             });
         },
@@ -192,7 +192,7 @@ var WebSocketProvider = /** @class */ (function (_super) {
         configurable: true
     });
     WebSocketProvider.prototype.resetEventsBlock = function (blockNumber) {
-        logger.throwError("cannot reset events block on WebSocketProvider", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+        logger.throwError("cannot reset events block on WebSocketProvider", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
             operation: "resetEventBlock"
         });
     };
@@ -208,7 +208,7 @@ var WebSocketProvider = /** @class */ (function (_super) {
             if (!value) {
                 return;
             }
-            logger.throwError("cannot set polling on WebSocketProvider", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("cannot set polling on WebSocketProvider", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                 operation: "setPolling"
             });
         },
@@ -273,7 +273,7 @@ var WebSocketProvider = /** @class */ (function (_super) {
         switch (event.type) {
             case "block":
                 this._subscribe("block", ["newHeads"], function (result) {
-                    var blockNumber = bignumber_1.BigNumber.from(result.number).toNumber();
+                    var blockNumber = boaproject_bignumber_1.BigNumber.from(result.number).toNumber();
                     _this._emitted.block = blockNumber;
                     _this.emit("block", blockNumber);
                 });

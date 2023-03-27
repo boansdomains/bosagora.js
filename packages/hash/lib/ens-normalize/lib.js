@@ -29,7 +29,7 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ens_normalize = exports.ens_normalize_post_check = void 0;
-var strings_1 = require("@ethersproject/strings");
+var boaproject_strings_1 = require("boaproject-strings");
 var include_js_1 = require("./include.js");
 var r = (0, include_js_1.getData)();
 var decoder_js_1 = require("./decoder.js");
@@ -43,7 +43,7 @@ var EMOJI_ROOT = (0, decoder_js_1.read_emoji_trie)(r);
 var HYPHEN = 0x2D;
 var UNDERSCORE = 0x5F;
 function explode_cp(name) {
-    return (0, strings_1.toUtf8CodePoints)(name);
+    return (0, boaproject_strings_1.toUtf8CodePoints)(name);
 }
 function filter_fe0f(cps) {
     return cps.filter(function (cp) { return cp != 0xFE0F; });

@@ -1,11 +1,11 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "@ethersproject/abstract-provider": "^5.7.0",
-    "@ethersproject/bignumber": "^5.7.0",
-    "@ethersproject/bytes": "^5.7.0",
-    "@ethersproject/logger": "^5.7.0",
-    "@ethersproject/properties": "^5.7.0"
+    "boaproject-abstract-provider": "^5.7.2",
+    "boaproject-bignumber": "^5.7.2",
+    "boaproject-bytes": "^5.7.2",
+    "boaproject-logger": "^5.7.2",
+    "boaproject-properties": "^5.7.2"
   },
   "description": "An Abstract Class for desribing an Ethereum Signer for ethers.",
   "ethereum": "donations.ethers.eth",
@@ -26,7 +26,7 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/abstract-signer",
+  "name": "boaproject-abstract-signer",
   "publishConfig": {
     "access": "public"
   },
@@ -41,5 +41,5 @@
   "sideEffects": false,
   "tarballHash": "0x10e5007f2b6467e86fa36292984b8e74bfcd18e6dc1748cf0f62b36c4e4e228a",
   "types": "./lib/index.d.ts",
-  "version": "5.7.0"
+  "version": "5.7.2"
 }

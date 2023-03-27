@@ -1,4 +1,4 @@
-import { BigNumberish } from "@ethersproject/bignumber";
+import { BigNumberish } from "boaproject-bignumber";
 import { Coder, Reader, Writer } from "./abstract-coder";
 export declare class NumberCoder extends Coder {
     readonly size: number;

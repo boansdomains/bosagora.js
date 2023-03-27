@@ -13,19 +13,19 @@ exports._base16To36 = exports._base36To16 = exports.BigNumber = exports.isBigNum
  */
 var bn_js_1 = __importDefault(require("bn.js"));
 var BN = bn_js_1.default.BN;
-var bytes_1 = require("@ethersproject/bytes");
-var logger_1 = require("@ethersproject/logger");
+var boaproject_bytes_1 = require("boaproject-bytes");
+var boaproject_logger_1 = require("boaproject-logger");
 var _version_1 = require("./_version");
-var logger = new logger_1.Logger(_version_1.version);
+var logger = new boaproject_logger_1.Logger(_version_1.version);
 var _constructorGuard = {};
 var MAX_SAFE = 0x1fffffffffffff;
 function isBigNumberish(value) {
     return (value != null) && (BigNumber.isBigNumber(value) ||
         (typeof (value) === "number" && (value % 1) === 0) ||
         (typeof (value) === "string" && !!value.match(/^-?[0-9]+$/)) ||
-        (0, bytes_1.isHexString)(value) ||
+        (0, boaproject_bytes_1.isHexString)(value) ||
         (typeof (value) === "bigint") ||
-        (0, bytes_1.isBytes)(value));
+        (0, boaproject_bytes_1.isBytes)(value));
 }
 exports.isBigNumberish = isBigNumberish;
 // Only warn about passing 10 into radix once
@@ -33,7 +33,7 @@ var _warnedToStringRadix = false;
 var BigNumber = /** @class */ (function () {
     function BigNumber(constructorGuard, hex) {
         if (constructorGuard !== _constructorGuard) {
-            logger.throwError("cannot call constructor directly; use BigNumber.from", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+            logger.throwError("cannot call constructor directly; use BigNumber.from", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
                 operation: "new (BigNumber)"
             });
         }
@@ -157,7 +157,7 @@ var BigNumber = /** @class */ (function () {
             return BigInt(this.toString());
         }
         catch (e) { }
-        return logger.throwError("this platform does not support BigInt", logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
+        return logger.throwError("this platform does not support BigInt", boaproject_logger_1.Logger.errors.UNSUPPORTED_OPERATION, {
             value: this.toString()
         });
     };
@@ -171,10 +171,10 @@ var BigNumber = /** @class */ (function () {
                 }
             }
             else if (arguments[0] === 16) {
-                logger.throwError("BigNumber.toString does not accept any parameters; use bigNumber.toHexString()", logger_1.Logger.errors.UNEXPECTED_ARGUMENT, {});
+                logger.throwError("BigNumber.toString does not accept any parameters; use bigNumber.toHexString()", boaproject_logger_1.Logger.errors.UNEXPECTED_ARGUMENT, {});
             }
             else {
-                logger.throwError("BigNumber.toString does not accept parameters", logger_1.Logger.errors.UNEXPECTED_ARGUMENT, {});
+                logger.throwError("BigNumber.toString does not accept parameters", boaproject_logger_1.Logger.errors.UNEXPECTED_ARGUMENT, {});
             }
         }
         return toBN(this).toString(10);
@@ -211,8 +211,8 @@ var BigNumber = /** @class */ (function () {
         if (typeof (anyValue) === "bigint") {
             return BigNumber.from(anyValue.toString());
         }
-        if ((0, bytes_1.isBytes)(anyValue)) {
-            return BigNumber.from((0, bytes_1.hexlify)(anyValue));
+        if ((0, boaproject_bytes_1.isBytes)(anyValue)) {
+            return BigNumber.from((0, boaproject_bytes_1.hexlify)(anyValue));
         }
         if (anyValue) {
             // Hexable interface (takes priority)
@@ -230,7 +230,7 @@ var BigNumber = /** @class */ (function () {
                     hex = anyValue.hex;
                 }
                 if (typeof (hex) === "string") {
-                    if ((0, bytes_1.isHexString)(hex) || (hex[0] === "-" && (0, bytes_1.isHexString)(hex.substring(1)))) {
+                    if ((0, boaproject_bytes_1.isHexString)(hex) || (hex[0] === "-" && (0, boaproject_bytes_1.isHexString)(hex.substring(1)))) {
                         return BigNumber.from(hex);
                     }
                 }
@@ -300,7 +300,7 @@ function throwFault(fault, operation, value) {
     if (value != null) {
         params.value = value;
     }
-    return logger.throwError(fault, logger_1.Logger.errors.NUMERIC_FAULT, params);
+    return logger.throwError(fault, boaproject_logger_1.Logger.errors.NUMERIC_FAULT, params);
 }
 // value should have no prefix
 function _base36To16(value) {

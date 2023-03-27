@@ -1,10 +1,10 @@
-import { Provider, TransactionRequest, TransactionResponse } from "@ethersproject/abstract-provider";
-import { Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from "@ethersproject/abstract-signer";
-import { Bytes } from "@ethersproject/bytes";
-import { Network, Networkish } from "@ethersproject/networks";
-import { Deferrable } from "@ethersproject/properties";
-import { AccessList } from "@ethersproject/transactions";
-import { ConnectionInfo } from "@ethersproject/web";
+import { Provider, TransactionRequest, TransactionResponse } from "boaproject-abstract-provider";
+import { Signer, TypedDataDomain, TypedDataField, TypedDataSigner } from "boaproject-abstract-signer";
+import { Bytes } from "boaproject-bytes";
+import { Network, Networkish } from "boaproject-networks";
+import { Deferrable } from "boaproject-properties";
+import { AccessList } from "boaproject-transactions";
+import { ConnectionInfo } from "boaproject-web";
 import { BaseProvider, Event } from "./base-provider";
 export declare class JsonRpcSigner extends Signer implements TypedDataSigner {
     readonly provider: JsonRpcProvider;

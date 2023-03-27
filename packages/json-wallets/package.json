@@ -1,17 +1,17 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "@ethersproject/abstract-signer": "^5.7.0",
-    "@ethersproject/address": "^5.7.0",
-    "@ethersproject/bytes": "^5.7.0",
-    "@ethersproject/hdnode": "^5.7.0",
-    "@ethersproject/keccak256": "^5.7.0",
-    "@ethersproject/logger": "^5.7.0",
-    "@ethersproject/pbkdf2": "^5.7.0",
-    "@ethersproject/properties": "^5.7.0",
-    "@ethersproject/random": "^5.7.0",
-    "@ethersproject/strings": "^5.7.0",
-    "@ethersproject/transactions": "^5.7.0",
+    "boaproject-abstract-signer": "^5.7.2",
+    "boaproject-address": "^5.7.2",
+    "boaproject-bytes": "^5.7.2",
+    "boaproject-hdnode": "^5.7.2",
+    "boaproject-keccak256": "^5.7.2",
+    "boaproject-logger": "^5.7.2",
+    "boaproject-pbkdf2": "^5.7.2",
+    "boaproject-properties": "^5.7.2",
+    "boaproject-random": "^5.7.2",
+    "boaproject-strings": "^5.7.2",
+    "boaproject-transactions": "^5.7.2",
     "aes-js": "3.0.0",
     "scrypt-js": "3.0.1"
   },
@@ -34,7 +34,7 @@
   "license": "MIT",
   "main": "./lib/index.js",
   "module": "./lib.esm/index.js",
-  "name": "@ethersproject/json-wallets",
+  "name": "boaproject-json-wallets",
   "publishConfig": {
     "access": "public"
   },
@@ -49,5 +49,5 @@
   "sideEffects": false,
   "tarballHash": "0x5fdee49e317ed39fd61f164ae5ee21dce0011a86a12f6eb6f58618fa2b2a3a5e",
   "types": "./lib/index.d.ts",
-  "version": "5.7.0"
+  "version": "5.7.2"
 }

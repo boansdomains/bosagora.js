@@ -10,16 +10,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import aes from "aes-js";
 import scrypt from "scrypt-js";
-import { getAddress } from "@ethersproject/address";
-import { arrayify, concat, hexlify } from "@ethersproject/bytes";
-import { defaultPath, entropyToMnemonic, HDNode, mnemonicToEntropy } from "@ethersproject/hdnode";
-import { keccak256 } from "@ethersproject/keccak256";
-import { pbkdf2 as _pbkdf2 } from "@ethersproject/pbkdf2";
-import { randomBytes } from "@ethersproject/random";
-import { Description } from "@ethersproject/properties";
-import { computeAddress } from "@ethersproject/transactions";
+import { getAddress } from "boaproject-address";
+import { arrayify, concat, hexlify } from "boaproject-bytes";
+import { defaultPath, entropyToMnemonic, HDNode, mnemonicToEntropy } from "boaproject-hdnode";
+import { keccak256 } from "boaproject-keccak256";
+import { pbkdf2 as _pbkdf2 } from "boaproject-pbkdf2";
+import { randomBytes } from "boaproject-random";
+import { Description } from "boaproject-properties";
+import { computeAddress } from "boaproject-transactions";
 import { getPassword, looseArrayify, searchPath, uuidV4, zpad } from "./utils";
-import { Logger } from "@ethersproject/logger";
+import { Logger } from "boaproject-logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 // Exported Types

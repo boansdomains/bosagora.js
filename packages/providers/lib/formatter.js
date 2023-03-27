@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.showThrottleMessage = exports.isCommunityResource = exports.isCommunityResourcable = exports.Formatter = void 0;
-var address_1 = require("@ethersproject/address");
-var bignumber_1 = require("@ethersproject/bignumber");
-var bytes_1 = require("@ethersproject/bytes");
-var constants_1 = require("@ethersproject/constants");
-var properties_1 = require("@ethersproject/properties");
-var transactions_1 = require("@ethersproject/transactions");
-var logger_1 = require("@ethersproject/logger");
+var boaproject_address_1 = require("boaproject-address");
+var boaproject_bignumber_1 = require("boaproject-bignumber");
+var boaproject_bytes_1 = require("boaproject-bytes");
+var boaproject_constants_1 = require("boaproject-constants");
+var boaproject_properties_1 = require("boaproject-properties");
+var boaproject_transactions_1 = require("boaproject-transactions");
+var boaproject_logger_1 = require("boaproject-logger");
 var _version_1 = require("./_version");
-var logger = new logger_1.Logger(_version_1.version);
+var logger = new boaproject_logger_1.Logger(_version_1.version);
 var Formatter = /** @class */ (function () {
     function Formatter() {
         this.formats = this.getDefaultFormats();
@@ -107,7 +107,7 @@ var Formatter = /** @class */ (function () {
             transactions: Formatter.allowNull(Formatter.arrayOf(hash)),
             baseFeePerGas: Formatter.allowNull(bigNumber)
         };
-        formats.blockWithTransactions = (0, properties_1.shallowCopy)(formats.block);
+        formats.blockWithTransactions = (0, boaproject_properties_1.shallowCopy)(formats.block);
         formats.blockWithTransactions.transactions = Formatter.allowNull(Formatter.arrayOf(this.transactionResponse.bind(this)));
         formats.filter = {
             fromBlock: Formatter.allowNull(blockTag, undefined),
@@ -130,7 +130,7 @@ var Formatter = /** @class */ (function () {
         return formats;
     };
     Formatter.prototype.accessList = function (accessList) {
-        return (0, transactions_1.accessListify)(accessList || []);
+        return (0, boaproject_transactions_1.accessListify)(accessList || []);
     };
     // Requires a BigNumberish that is within the IEEE754 safe integer range; returns a number
     // Strict! Used on input.
@@ -138,17 +138,17 @@ var Formatter = /** @class */ (function () {
         if (number === "0x") {
             return 0;
         }
-        return bignumber_1.BigNumber.from(number).toNumber();
+        return boaproject_bignumber_1.BigNumber.from(number).toNumber();
     };
     Formatter.prototype.type = function (number) {
         if (number === "0x" || number == null) {
             return 0;
         }
-        return bignumber_1.BigNumber.from(number).toNumber();
+        return boaproject_bignumber_1.BigNumber.from(number).toNumber();
     };
     // Strict! Used on input.
     Formatter.prototype.bigNumber = function (value) {
-        return bignumber_1.BigNumber.from(value);
+        return boaproject_bignumber_1.BigNumber.from(value);
     };
     // Requires a boolean, "true" or  "false"; returns a boolean
     Formatter.prototype.boolean = function (value) {
@@ -171,7 +171,7 @@ var Formatter = /** @class */ (function () {
             if (!strict && value.substring(0, 2) !== "0x") {
                 value = "0x" + value;
             }
-            if ((0, bytes_1.isHexString)(value)) {
+            if ((0, boaproject_bytes_1.isHexString)(value)) {
                 return value.toLowerCase();
             }
         }
@@ -187,17 +187,17 @@ var Formatter = /** @class */ (function () {
     // Requires an address
     // Strict! Used on input.
     Formatter.prototype.address = function (value) {
-        return (0, address_1.getAddress)(value);
+        return (0, boaproject_address_1.getAddress)(value);
     };
     Formatter.prototype.callAddress = function (value) {
-        if (!(0, bytes_1.isHexString)(value, 32)) {
+        if (!(0, boaproject_bytes_1.isHexString)(value, 32)) {
             return null;
         }
-        var address = (0, address_1.getAddress)((0, bytes_1.hexDataSlice)(value, 12));
-        return (address === constants_1.AddressZero) ? null : address;
+        var address = (0, boaproject_address_1.getAddress)((0, boaproject_bytes_1.hexDataSlice)(value, 12));
+        return (address === boaproject_constants_1.AddressZero) ? null : address;
     };
     Formatter.prototype.contractAddress = function (value) {
-        return (0, address_1.getContractAddress)(value);
+        return (0, boaproject_address_1.getContractAddress)(value);
     };
     // Strict! Used on input.
     Formatter.prototype.blockTag = function (blockTag) {
@@ -215,15 +215,15 @@ var Formatter = /** @class */ (function () {
             case "finalized":
                 return blockTag;
         }
-        if (typeof (blockTag) === "number" || (0, bytes_1.isHexString)(blockTag)) {
-            return (0, bytes_1.hexValue)(blockTag);
+        if (typeof (blockTag) === "number" || (0, boaproject_bytes_1.isHexString)(blockTag)) {
+            return (0, boaproject_bytes_1.hexValue)(blockTag);
         }
         throw new Error("invalid blockTag");
     };
     // Requires a hash, optionally requires 0x prefix; returns prefixed lowercase hash.
     Formatter.prototype.hash = function (value, strict) {
         var result = this.hex(value, strict);
-        if ((0, bytes_1.hexDataLength)(result) !== 32) {
+        if ((0, boaproject_bytes_1.hexDataLength)(result) !== 32) {
             return logger.throwArgumentError("invalid hash", "value", value);
         }
         return result;
@@ -233,7 +233,7 @@ var Formatter = /** @class */ (function () {
         if (value == null) {
             return null;
         }
-        var v = bignumber_1.BigNumber.from(value);
+        var v = boaproject_bignumber_1.BigNumber.from(value);
         try {
             return v.toNumber();
         }
@@ -241,10 +241,10 @@ var Formatter = /** @class */ (function () {
         return null;
     };
     Formatter.prototype.uint256 = function (value) {
-        if (!(0, bytes_1.isHexString)(value)) {
+        if (!(0, boaproject_bytes_1.isHexString)(value)) {
             throw new Error("invalid uint256");
         }
-        return (0, bytes_1.hexZeroPad)(value, 32);
+        return (0, boaproject_bytes_1.hexZeroPad)(value, 32);
     };
     Formatter.prototype._block = function (value, format) {
         if (value.author != null && value.miner == null) {
@@ -253,7 +253,7 @@ var Formatter = /** @class */ (function () {
         // The difficulty may need to come from _difficulty in recursed blocks
         var difficulty = (value._difficulty != null) ? value._difficulty : value.difficulty;
         var result = Formatter.check(format, value);
-        result._difficulty = ((difficulty == null) ? null : bignumber_1.BigNumber.from(difficulty));
+        result._difficulty = ((difficulty == null) ? null : boaproject_bignumber_1.BigNumber.from(difficulty));
         return result;
     };
     Formatter.prototype.block = function (value) {
@@ -273,7 +273,7 @@ var Formatter = /** @class */ (function () {
         }
         // Some clients (TestRPC) do strange things like return 0x0 for the
         // 0 address; correct this to be a real address
-        if (transaction.to && bignumber_1.BigNumber.from(transaction.to).isZero()) {
+        if (transaction.to && boaproject_bignumber_1.BigNumber.from(transaction.to).isZero()) {
             transaction.to = "0x0000000000000000000000000000000000000000";
         }
         // Rename input to data
@@ -290,8 +290,8 @@ var Formatter = /** @class */ (function () {
         var result = Formatter.check(this.formats.transaction, transaction);
         if (transaction.chainId != null) {
             var chainId = transaction.chainId;
-            if ((0, bytes_1.isHexString)(chainId)) {
-                chainId = bignumber_1.BigNumber.from(chainId).toNumber();
+            if ((0, boaproject_bytes_1.isHexString)(chainId)) {
+                chainId = boaproject_bignumber_1.BigNumber.from(chainId).toNumber();
             }
             result.chainId = chainId;
         }
@@ -301,8 +301,8 @@ var Formatter = /** @class */ (function () {
             if (chainId == null && result.v == null) {
                 chainId = transaction.chainId;
             }
-            if ((0, bytes_1.isHexString)(chainId)) {
-                chainId = bignumber_1.BigNumber.from(chainId).toNumber();
+            if ((0, boaproject_bytes_1.isHexString)(chainId)) {
+                chainId = boaproject_bignumber_1.BigNumber.from(chainId).toNumber();
             }
             if (typeof (chainId) !== "number" && result.v != null) {
                 chainId = (result.v - 35) / 2;
@@ -323,7 +323,7 @@ var Formatter = /** @class */ (function () {
         return result;
     };
     Formatter.prototype.transaction = function (value) {
-        return (0, transactions_1.parse)(value);
+        return (0, boaproject_transactions_1.parse)(value);
     };
     Formatter.prototype.receiptLog = function (value) {
         return Formatter.check(this.formats.receiptLog, value);
@@ -334,7 +334,7 @@ var Formatter = /** @class */ (function () {
         if (result.root != null) {
             if (result.root.length <= 4) {
                 // Could be 0x00, 0x0, 0x01 or 0x1
-                var value_1 = bignumber_1.BigNumber.from(result.root).toNumber();
+                var value_1 = boaproject_bignumber_1.BigNumber.from(result.root).toNumber();
                 if (value_1 === 0 || value_1 === 1) {
                     // Make sure if both are specified, they match
                     if (result.status != null && (result.status !== value_1)) {

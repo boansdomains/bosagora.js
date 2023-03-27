@@ -1,7 +1,7 @@
 "use strict";
-import { BigNumber } from "@ethersproject/bignumber";
-import { defineReadOnly } from "@ethersproject/properties";
-import { Logger } from "@ethersproject/logger";
+import { BigNumber } from "boaproject-bignumber";
+import { defineReadOnly } from "boaproject-properties";
+import { Logger } from "boaproject-logger";
 import { version } from "./_version";
 const logger = new Logger(version);
 ;
