@@ -10,7 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "boa-ethers": "^5.7.2",
+    "boa-ethers": "^5.7.6",
     "boaproject-shims": "^5.0.0",
     "react": "16.13.1",
     "react-native": "0.63.2",

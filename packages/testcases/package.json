@@ -16,11 +16,11 @@
     "./lib/disk-utils": "./lib/browser-disk-utils.js"
   },
   "dependencies": {
-    "boaproject-bignumber": "^5.7.2",
-    "boaproject-bytes": "^5.7.2",
-    "boaproject-keccak256": "^5.7.2",
-    "boaproject-strings": "^5.7.2",
-    "boa-ethers": "^5.7.2",
+    "boaproject-bignumber": "^5.7.6",
+    "boaproject-bytes": "^5.7.6",
+    "boaproject-keccak256": "^5.7.6",
+    "boaproject-strings": "^5.7.6",
+    "boa-ethers": "^5.7.6",
     "tiny-inflate": "1.0.3"
   },
   "description": "Testcases for Ethereum and scripts to generate testcases.",
@@ -56,5 +56,5 @@
   },
   "tarballHash": "0x9b0292441ce7f36612f41f9d697f93793daa7a2bde85855fb088c4df874d58df",
   "types": "./lib/index.d.ts",
-  "version": "5.7.2"
+  "version": "5.7.6"
 }

@@ -1,9 +1,9 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "boaproject-bignumber": "^5.7.2",
-    "boaproject-constants": "^5.7.2",
-    "boaproject-logger": "^5.7.2"
+    "boaproject-bignumber": "^5.7.6",
+    "boaproject-constants": "^5.7.6",
+    "boaproject-logger": "^5.7.6"
   },
   "description": "Unit conversion functions for Ethereum.",
   "ethereum": "donations.ethers.eth",
@@ -41,5 +41,5 @@
   "sideEffects": false,
   "tarballHash": "0x213811ac8c90bcf07e0baff3a6e583b9a25bbda6f0e8372773d7c1c85d894fa8",
   "types": "./lib/index.d.ts",
-  "version": "5.7.2"
+  "version": "5.7.6"
 }

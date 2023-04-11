@@ -1,15 +1,15 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "boaproject-address": "^5.7.2",
-    "boaproject-bignumber": "^5.7.2",
-    "boaproject-bytes": "^5.7.2",
-    "boaproject-constants": "^5.7.2",
-    "boaproject-keccak256": "^5.7.2",
-    "boaproject-logger": "^5.7.2",
-    "boaproject-properties": "^5.7.2",
-    "boaproject-rlp": "^5.7.2",
-    "boaproject-signing-key": "^5.7.2"
+    "boaproject-address": "^5.7.6",
+    "boaproject-bignumber": "^5.7.6",
+    "boaproject-bytes": "^5.7.6",
+    "boaproject-constants": "^5.7.6",
+    "boaproject-keccak256": "^5.7.6",
+    "boaproject-logger": "^5.7.6",
+    "boaproject-properties": "^5.7.6",
+    "boaproject-rlp": "^5.7.6",
+    "boaproject-signing-key": "^5.7.6"
   },
   "description": "Utilities for decoding and encoding Ethereum transaction for ethers.",
   "ethereum": "donations.ethers.eth",
@@ -45,5 +45,5 @@
   "sideEffects": false,
   "tarballHash": "0xee56f11b91fcfc6020d9009981cd8276eeeda4883bdc9ee8eecf8eb9b726c457",
   "types": "./lib/index.d.ts",
-  "version": "5.7.2"
+  "version": "5.7.6"
 }

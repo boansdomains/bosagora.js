@@ -1,15 +1,15 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "boaproject-address": "^5.7.2",
-    "boaproject-bignumber": "^5.7.2",
-    "boaproject-bytes": "^5.7.2",
-    "boaproject-constants": "^5.7.2",
-    "boaproject-hash": "^5.7.2",
-    "boaproject-keccak256": "^5.7.2",
-    "boaproject-logger": "^5.7.2",
-    "boaproject-properties": "^5.7.2",
-    "boaproject-strings": "^5.7.2"
+    "boaproject-address": "^5.7.6",
+    "boaproject-bignumber": "^5.7.6",
+    "boaproject-bytes": "^5.7.6",
+    "boaproject-constants": "^5.7.6",
+    "boaproject-hash": "^5.7.6",
+    "boaproject-keccak256": "^5.7.6",
+    "boaproject-logger": "^5.7.6",
+    "boaproject-properties": "^5.7.6",
+    "boaproject-strings": "^5.7.6"
   },
   "description": "Utilities and Classes for parsing, formatting and managing Ethereum ABIs.",
   "ethereum": "donations.ethers.eth",
@@ -45,5 +45,5 @@
   "sideEffects": false,
   "tarballHash": "0x76f6fd1617e7f7aacd876957111e5368a7e53b8aebf572b30f0f1a0cd2b4a603",
   "types": "./lib/index.d.ts",
-  "version": "5.7.2"
+  "version": "5.7.6"
 }

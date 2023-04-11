@@ -1,18 +1,18 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "boaproject-abstract-signer": "^5.7.2",
-    "boaproject-basex": "^5.7.2",
-    "boaproject-bignumber": "^5.7.2",
-    "boaproject-bytes": "^5.7.2",
-    "boaproject-logger": "^5.7.2",
-    "boaproject-pbkdf2": "^5.7.2",
-    "boaproject-properties": "^5.7.2",
-    "boaproject-sha2": "^5.7.2",
-    "boaproject-signing-key": "^5.7.2",
-    "boaproject-strings": "^5.7.2",
-    "boaproject-transactions": "^5.7.2",
-    "boaproject-wordlists": "^5.7.2"
+    "boaproject-abstract-signer": "^5.7.6",
+    "boaproject-basex": "^5.7.6",
+    "boaproject-bignumber": "^5.7.6",
+    "boaproject-bytes": "^5.7.6",
+    "boaproject-logger": "^5.7.6",
+    "boaproject-pbkdf2": "^5.7.6",
+    "boaproject-properties": "^5.7.6",
+    "boaproject-sha2": "^5.7.6",
+    "boaproject-signing-key": "^5.7.6",
+    "boaproject-strings": "^5.7.6",
+    "boaproject-transactions": "^5.7.6",
+    "boaproject-wordlists": "^5.7.6"
   },
   "description": "BIP32 Hierarchal Deterministic Node operations.",
   "ethereum": "donations.ethers.eth",
@@ -48,5 +48,5 @@
   "sideEffects": false,
   "tarballHash": "0xca4bad80837378d07524f450188a449b1a6578b8bbc733dea50146488c8143e0",
   "types": "./lib/index.d.ts",
-  "version": "5.7.2"
+  "version": "5.7.6"
 }

@@ -1,15 +1,15 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "boaproject-abstract-signer": "^5.7.2",
-    "boaproject-address": "^5.7.2",
-    "boaproject-base64": "^5.7.2",
-    "boaproject-bignumber": "^5.7.2",
-    "boaproject-bytes": "^5.7.2",
-    "boaproject-keccak256": "^5.7.2",
-    "boaproject-logger": "^5.7.2",
-    "boaproject-properties": "^5.7.2",
-    "boaproject-strings": "^5.7.2"
+    "boaproject-abstract-signer": "^5.7.6",
+    "boaproject-address": "^5.7.6",
+    "boaproject-base64": "^5.7.6",
+    "boaproject-bignumber": "^5.7.6",
+    "boaproject-bytes": "^5.7.6",
+    "boaproject-keccak256": "^5.7.6",
+    "boaproject-logger": "^5.7.6",
+    "boaproject-properties": "^5.7.6",
+    "boaproject-strings": "^5.7.6"
   },
   "description": "Hash utility functions for Ethereum.",
   "ethereum": "donations.ethers.eth",
@@ -45,5 +45,5 @@
   "sideEffects": false,
   "tarballHash": "0x6e7a2a4f4c5a722640a0904a3f015a410699e60655329f11148be6267b5d4c6c",
   "types": "./lib/index.d.ts",
-  "version": "5.7.2"
+  "version": "5.7.6"
 }

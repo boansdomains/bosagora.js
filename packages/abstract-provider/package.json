@@ -1,13 +1,13 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "boaproject-bignumber": "^5.7.2",
-    "boaproject-bytes": "^5.7.2",
-    "boaproject-logger": "^5.7.2",
-    "boaproject-networks": "^5.7.2",
-    "boaproject-properties": "^5.7.2",
-    "boaproject-transactions": "^5.7.2",
-    "boaproject-web": "^5.7.2"
+    "boaproject-bignumber": "^5.7.6",
+    "boaproject-bytes": "^5.7.6",
+    "boaproject-logger": "^5.7.6",
+    "boaproject-networks": "^5.7.6",
+    "boaproject-properties": "^5.7.6",
+    "boaproject-transactions": "^5.7.6",
+    "boaproject-web": "^5.7.6"
   },
   "description": "An Abstract Class for describing an Ethereum Provider for ethers.",
   "ethereum": "donations.ethers.eth",
@@ -43,5 +43,5 @@
   "sideEffects": false,
   "tarballHash": "0x952cf2ca65f6e38799386cab1c8595e8f849360128bc61fb28de2b595bbfaad9",
   "types": "./lib/index.d.ts",
-  "version": "5.7.2"
+  "version": "5.7.6"
 }

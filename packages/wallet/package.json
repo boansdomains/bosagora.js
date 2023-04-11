@@ -1,21 +1,21 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "boaproject-abstract-provider": "^5.7.2",
-    "boaproject-abstract-signer": "^5.7.2",
-    "boaproject-address": "^5.7.2",
-    "boaproject-bignumber": "^5.7.2",
-    "boaproject-bytes": "^5.7.2",
-    "boaproject-hash": "^5.7.2",
-    "boaproject-hdnode": "^5.7.2",
-    "boaproject-json-wallets": "^5.7.2",
-    "boaproject-keccak256": "^5.7.2",
-    "boaproject-logger": "^5.7.2",
-    "boaproject-properties": "^5.7.2",
-    "boaproject-random": "^5.7.2",
-    "boaproject-signing-key": "^5.7.2",
-    "boaproject-transactions": "^5.7.2",
-    "boaproject-wordlists": "^5.7.2"
+    "boaproject-abstract-provider": "^5.7.6",
+    "boaproject-abstract-signer": "^5.7.6",
+    "boaproject-address": "^5.7.6",
+    "boaproject-bignumber": "^5.7.6",
+    "boaproject-bytes": "^5.7.6",
+    "boaproject-hash": "^5.7.6",
+    "boaproject-hdnode": "^5.7.6",
+    "boaproject-json-wallets": "^5.7.6",
+    "boaproject-keccak256": "^5.7.6",
+    "boaproject-logger": "^5.7.6",
+    "boaproject-properties": "^5.7.6",
+    "boaproject-random": "^5.7.6",
+    "boaproject-signing-key": "^5.7.6",
+    "boaproject-transactions": "^5.7.6",
+    "boaproject-wordlists": "^5.7.6"
   },
   "description": "Classes for managing, encrypting and decrypting Ethereum private keys as a Signer for ethers.",
   "ethereum": "donations.ethers.eth",
@@ -51,5 +51,5 @@
   "sideEffects": false,
   "tarballHash": "0x9f0366a56a1e73f4f47b37c7167c0491792f347492688f07f964e12fc10b5a1a",
   "types": "./lib/index.d.ts",
-  "version": "5.7.2"
+  "version": "5.7.6"
 }

@@ -1,17 +1,17 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "boaproject-abstract-signer": "^5.7.2",
-    "boaproject-address": "^5.7.2",
-    "boaproject-bytes": "^5.7.2",
-    "boaproject-hdnode": "^5.7.2",
-    "boaproject-keccak256": "^5.7.2",
-    "boaproject-logger": "^5.7.2",
-    "boaproject-pbkdf2": "^5.7.2",
-    "boaproject-properties": "^5.7.2",
-    "boaproject-random": "^5.7.2",
-    "boaproject-strings": "^5.7.2",
-    "boaproject-transactions": "^5.7.2",
+    "boaproject-abstract-signer": "^5.7.6",
+    "boaproject-address": "^5.7.6",
+    "boaproject-bytes": "^5.7.6",
+    "boaproject-hdnode": "^5.7.6",
+    "boaproject-keccak256": "^5.7.6",
+    "boaproject-logger": "^5.7.6",
+    "boaproject-pbkdf2": "^5.7.6",
+    "boaproject-properties": "^5.7.6",
+    "boaproject-random": "^5.7.6",
+    "boaproject-strings": "^5.7.6",
+    "boaproject-transactions": "^5.7.6",
     "aes-js": "3.0.0",
     "scrypt-js": "3.0.1"
   },
@@ -49,5 +49,5 @@
   "sideEffects": false,
   "tarballHash": "0x5fdee49e317ed39fd61f164ae5ee21dce0011a86a12f6eb6f58618fa2b2a3a5e",
   "types": "./lib/index.d.ts",
-  "version": "5.7.2"
+  "version": "5.7.6"
 }

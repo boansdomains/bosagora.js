@@ -1,8 +1,8 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "boaproject-bytes": "^5.7.2",
-    "boaproject-properties": "^5.7.2"
+    "boaproject-bytes": "^5.7.6",
+    "boaproject-properties": "^5.7.6"
   },
   "description": "Base-X without Buffer.",
   "ethereum": "donations.ethers.eth",
@@ -38,5 +38,5 @@
   "sideEffects": false,
   "tarballHash": "0xa3450b5ccf02165bd79e235cc6803751f8194a7680cfc165c62ff3ee3fa6def5",
   "types": "./lib/index.d.ts",
-  "version": "5.7.2"
+  "version": "5.7.6"
 }

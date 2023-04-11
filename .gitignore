@@ -27,3 +27,4 @@ packages/testcases/input/nameprep/**
 output/**
 
 misc/testing/**
+.idea/

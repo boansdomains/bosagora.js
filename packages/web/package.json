@@ -7,11 +7,11 @@
     "./lib/geturl": "./lib/browser-geturl.js"
   },
   "dependencies": {
-    "boaproject-base64": "^5.7.2",
-    "boaproject-bytes": "^5.7.2",
-    "boaproject-logger": "^5.7.2",
-    "boaproject-properties": "^5.7.2",
-    "boaproject-strings": "^5.7.2"
+    "boaproject-base64": "^5.7.6",
+    "boaproject-bytes": "^5.7.6",
+    "boaproject-logger": "^5.7.6",
+    "boaproject-properties": "^5.7.6",
+    "boaproject-strings": "^5.7.6"
   },
   "description": "Utility fucntions for managing web requests for ethers.",
   "ethereum": "donations.ethers.eth",
@@ -47,5 +47,5 @@
   "sideEffects": false,
   "tarballHash": "0xb3ee68f89ee8df5c4dbd69a5d346057d962d24d2ae08100490a2d1e51ee18f7f",
   "types": "./lib/index.d.ts",
-  "version": "5.7.2"
+  "version": "5.7.6"
 }

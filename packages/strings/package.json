@@ -1,9 +1,9 @@
 {
   "author": "Richard Moore <me@ricmoo.com>",
   "dependencies": {
-    "boaproject-bytes": "^5.7.2",
-    "boaproject-constants": "^5.7.2",
-    "boaproject-logger": "^5.7.2"
+    "boaproject-bytes": "^5.7.6",
+    "boaproject-constants": "^5.7.6",
+    "boaproject-logger": "^5.7.6"
   },
   "description": "String utility functions.",
   "ethereum": "donations.ethers.eth",
@@ -41,5 +41,5 @@
   "sideEffects": false,
   "tarballHash": "0xbde9a4dad59a25a6b1956cf36146ddcceb251b39b2761ac4899b24876656c496",
   "types": "./lib/index.d.ts",
-  "version": "5.7.2"
+  "version": "5.7.6"
 }

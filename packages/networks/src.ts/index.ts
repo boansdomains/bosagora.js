@@ -209,21 +209,16 @@ const networks: { [name: string]: Network } = {
     bnb: { chainId: 56, name: "bnb" },
     bnbt: { chainId: 97, name: "bnbt" },
 
-    bosagora_mainnet: {
+    bosagora: {
         chainId: 2151,
-        ensAddress: "0xA32505eE9dAEF7f6189e699fD0f6983af8C97Cac",
-        name: "agora_mainnet",
+        ensAddress: "0x8ec078ecC2779959136eE870475c02204B7eA93d",
+        name: "bosagora",
     },
-    bosagora_testnet: {
+    athens: {
         chainId: 2019,
-        ensAddress: "0xA32505eE9dAEF7f6189e699fD0f6983af8C97Cac",
-        name: "bosagora_testnet",
-    },
-    bosagora_michael: {
-        chainId: 34559,
-        ensAddress: "0xA32505eE9dAEF7f6189e699fD0f6983af8C97Cac",
-        name: "bosagora_michael",
-    },
+        ensAddress: "0x98ceb786EbF190705B442974113651A3Ae3D23f3",
+        name: "athens",
+    }
 }
 
 /**
